@@ -7,9 +7,9 @@
 ### Auth
 
 - `POST` **`/auth/signup`**
-  - request payload : `{name: "Jai Arora", password: "12345323", employeeId: "23gfgfwwdg22",  designation: "software dev", team: "dineout", department: "Tech", bio: "Lorem Ipsum" , interests: ["AI", "React", "Node"]}`
+  - request payload : `{name: "Jai Arora", employeeId: "23gfgfwwdg22",  designation: "software dev", team: "dineout", department: "Tech", bio: "Lorem Ipsum" , interests: ["AI", "React", "Node"]}`
 - `POST` **`/auth/signin`**
-  - request payload: `{employeeId: "23gfgfwwdg22", password: "12345323" }` 
+  - request payload: `{employeeId: "23gfgfwwdg22"}` 
 
 ### 1. Users
 
@@ -27,7 +27,7 @@
 - `DELETE` **`/users/{employeeId}/interests`** - Delete User Interests
   - request payload: `{interest: ["AI"]}`
   - response payload: `{interests:["React", "Node", "ML"]}`
-  
+
 - `GET` **`/users/{employeeId}/interests`** - Get user Interests
   - response paylaod: `{interests:["React", "Node", "ML"]}`
 
