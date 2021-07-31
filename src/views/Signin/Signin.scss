@@ -1,0 +1,43 @@
+@import "../../common/styles/colors", "../../common/styles/fonts",
+  "../../common/styles/mixins";
+
+$form-elem-max-width: 300px;
+$form-elem-width: 200px;
+.signin-page {
+  display: flex;
+  height: 100%;
+  .hero {
+    width: 60%;
+    height: 100%;
+    background-color: $primary-dark;
+  }
+  .form-container {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .form-heading {
+      color: $primary-dark;
+      width: $form-elem-width;
+      font-size: map-get($font-sizes, "XL");
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+  }
+  .ant-btn-primary {
+    width: $form-elem-width;
+    max-width: $form-elem-max-width;
+    background-color: $primary;
+  }
+  @include mobile {
+    .hero {
+      display: none;
+    }
+    .form-container {
+      width: 100%;
+    }
+  }
+}
