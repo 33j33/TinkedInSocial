@@ -6,18 +6,51 @@
 
 ### Auth
 
-- `POST` **`/auth/signup`**
-  - request payload : `{name: "Jai Arora", employeeId: "23gfgfwwdg22",  designation: "software dev", team: "dineout", department: "Tech", bio: "Lorem Ipsum" , interests: ["AI", "React", "Node"]}`
 - `POST` **`/auth/signin`**
-  - request payload: `{employeeId: "23gfgfwwdg22"}` 
+  - request payload: 
+  ```javascript
+  {employeeId: "23gfgfwwdg22"}
+  ``` 
 
 ### 1. Users
 
 - `GET` **`/users/{employeeId}`** - Get user profile
-  -  response payload: `{name: 'jai arora', profileImgId: "38d86f99-93e6-4b4e-bbaf-4e9314713ca5", designation: "software dev", team: "dineout", department: "Tech", bio: "Lorem Ipsum" , interests: ["AI", "React", "Node"]}`
+  -  response payload: 
+  ```javascript
+  {
+    name: 'jai arora',
+    profileImgId: "38d86f99-93e6-4b4e-bbaf-4e9314713ca5", designation: "software dev",
+    team: "dineout",
+    department: "Tech",
+    bio: "Lorem Ipsum" ,
+    interests: ["AI", "React", "Node"]
+  }
+  ```
+
+- `POST` **`/users/{employeeId}`**
+  - request payload : 
+  ```javascript
+  {
+    name: "Jai Arora", 
+    employeeId: "23gfgfwwdg22",
+    designation: "software dev",
+    team: "dineout",
+    department: "Tech",
+    bio: "Lorem Ipsum",
+    interests: ["AI", "React", "Node"]
+  }
+  ```
   
 - `PATCH` **`/users/{employeeId}`** - Update user profile
-  - request payload: `{name: 'jai arora', profileImgId: "38d86f99-93e6-4b4e-bbaf-4e9314713ca5", designation: "software dev", team: "dineout", department: "Tech", bio: "Lorem Ipsum" , interests: ["AI", "React", "Node"]}`
+  - request payload: 
+  ```javascript
+  {name: 'jai arora',
+  profileImgId:  "38d86f99-93e6-4b4e-bbaf-4e9314713ca5", designation: "software dev",
+  team: "dineout", 
+  department: "Tech", 
+  bio: "Lorem Ipsum" , 
+  interests: ["AI", "React", "Node"]}
+  ```
   - response payload: `{}`
   
 - `POST` **`/users/{employeeId}/interests`** - Add User Interests
