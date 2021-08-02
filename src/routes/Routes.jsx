@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Signin, Signup } from "../views";
+import { Home, Signin, Signup } from "../views";
 
 export default function Routes() {
   return (
@@ -11,8 +11,8 @@ export default function Routes() {
           <Route path="/signup">
             <Signup />
           </Route>
-          <Route path="/">
-            <div>Home</div>
+          <Route path="/home">
+            <Home/>
           </Route>
         </Switch>
     </Router>
