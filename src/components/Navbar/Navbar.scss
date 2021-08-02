@@ -1,0 +1,72 @@
+@import "../../common/styles/colors", "../../common/styles/fonts",
+  "../../common/styles/mixins";
+nav {
+  background: $primary-dark;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0.8rem;
+
+  .bars-icon {
+    display: none;
+    color: invert($color: $text-color-dark);
+    font-size: map-get($map: $font-sizes, $key: "2XL");
+  }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo > div {
+    color: invert($color: $text-color-dark);
+    border: 2px solid invert($color: $text-color-dark);
+    font-family: $font-secondary;
+    font-size: map-get($map: $font-sizes, $key: "XL");
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 3px 5px;
+    margin: 8px 0px;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+
+    a {
+      font-size: map-get($map: $font-sizes, $key: "M");
+      border-bottom: 2px solid transparent;
+    }
+    a.active {
+      border-bottom: 2px solid $primary-light;
+    }
+    button:last-child {
+      margin-left: 2rem;
+      background-color: $primary;
+      border: none;
+      font-family: $font-secondary;
+
+      &:hover {
+        background-color: $primary-light;
+      }
+    }
+  }
+
+  @include mobile {
+    nav {
+      position: relative;
+    }
+    .bars-icon {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(-50%, 60%);
+      cursor: pointer;
+    }
+    .nav-menu {
+      display: none;
+    }
+  }
+}

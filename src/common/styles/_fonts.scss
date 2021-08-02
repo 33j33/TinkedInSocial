@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,200,300,400,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,200,300,400,500,600,700&family=Hind:300,400,500,600,700");
 
 $font-primary: "Hind", "sans-serif";
 $font-secondary: 'IBM Plex Sans', sans-serif;
@@ -9,6 +9,7 @@ $font-sizes: (
     "XL": 1.424rem,
     "L": 1.266rem,
     "M": 1.125rem,
+    'R': 1rem,
     "S": 0.889rem,
     "XS": 0.79rem,
     "2XS": 0.702rem,
