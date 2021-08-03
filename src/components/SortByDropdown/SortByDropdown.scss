@@ -1,0 +1,11 @@
+.dropdown-container {
+     width: clamp(300px, 95%, 650px);
+
+     .ant-divider-horizontal.ant-divider-with-text {
+          margin: -.6rem 0;
+          font-size: 14px;
+     }
+     .ant-divider-horizontal.ant-divider-with-text-right::after{
+          width: 0%;
+     }
+}
