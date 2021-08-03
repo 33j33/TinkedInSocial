@@ -25,6 +25,7 @@ $form-elem-width: 200px;
     font-size: map-get($font-sizes, "XL");
     font-weight: 500;
     margin-bottom: 1rem;
+    text-align: center;
   }
   form#signup {
     padding: 0.4rem;
@@ -46,7 +47,11 @@ $form-elem-width: 200px;
   }
   .ant-btn-primary {
     background-color: $primary;
+    border: none;
     width: 100%;
+    &:hover {
+      background-color: $primary-light;
+    }
   }
   @include mobile {
     .hero {

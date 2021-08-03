@@ -78,7 +78,7 @@ const Signup = () => {
             <Input.TextArea placeholder="Give a short description about yourself" />
           </Form.Item>
           <Form.Item className="btn">
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" block htmlType="submit">
               Save
             </Button>
           </Form.Item>

@@ -31,6 +31,10 @@ $form-elem-width: 200px;
     width: $form-elem-width;
     max-width: $form-elem-max-width;
     background-color: $primary;
+    border: none;
+    &:hover {
+      background-color: $primary-light;
+    }
   }
   @include mobile {
     .hero {
