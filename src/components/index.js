@@ -1,3 +1,4 @@
 import Navbar from "./Navbar/Navbar";
 import PostCard from "./PostCard/PostCard";
-export {Navbar, PostCard}
+import CreatePost from "./CreatePost/CreatePost";
+export {Navbar, PostCard, CreatePost}

@@ -56,7 +56,7 @@ const Signup = () => {
             </Select>
           </Form.Item>
           <Form.Item name="interests" className="interests-input">
-            <Select placeholder="Interests" mode="tags">
+            <Select placeholder="Interests"  mode="multiple">
               <Option value="AI">AI</Option>
               <Option value="React">React</Option>
               <Option value="Node">Node</Option>
