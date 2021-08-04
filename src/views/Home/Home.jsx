@@ -1,4 +1,4 @@
-import { CreatePost, Navbar, PostCard, SortByDropdown } from "../../components";
+import { CreatePost, Navbar, PostCard, SortByDropdown, TagsCarousel } from "../../components";
 import "./Home.scss";
 
 const Home = () => {
@@ -11,6 +11,7 @@ const Home = () => {
           <SortByDropdown/>
           <PostCard />
           <PostCard />
+          <TagsCarousel/>
         </div>
       </div>
     </>

@@ -1,0 +1,24 @@
+@import "../../common/styles/colors", "../../common/styles/fonts";
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: clamp(300px, 90%, 640px);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  box-shadow: 0 0 1px 2px rgba(39, 3, 63, 0.35);
+  border-radius: 30px;
+  padding: 0.4rem .5rem;
+  background-color: $card-bg-color;
+}
+
+.ant-tag.ant-tag-checkable {
+  font-weight: 500;
+}
+.ant-tag-checkable:active,
+.ant-tag-checkable-checked {
+  background-color: $primary-dark;
+  border-radius: 20px;
+}

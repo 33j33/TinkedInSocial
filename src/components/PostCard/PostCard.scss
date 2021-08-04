@@ -58,6 +58,7 @@
     .post-metrics {
       border-bottom: 1px solid lighten($text-color-lighter, 30%);
       margin-right: 1rem;
+      padding: .4rem .2rem;
       font-family: $font-secondary;
       font-size: map-get($map: $font-sizes, $key: 'XS');
     }
