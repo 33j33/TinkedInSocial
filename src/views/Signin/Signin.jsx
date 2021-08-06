@@ -22,9 +22,6 @@ const Signin = () => {
         </div>
         <Form
           name="signin"
-          // wrapperCol={{
-          //   span: 16,
-          // }}
           initialValues={{
             remember: true,
           }}
