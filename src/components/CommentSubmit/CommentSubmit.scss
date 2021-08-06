@@ -1,0 +1,33 @@
+@import "../../common/styles/colors", "../../common/styles/fonts", '../../common/styles/mixins';
+
+.comment-submit-wrapper {
+    margin-top: .4rem;
+
+  form#comment-submit-form {
+    min-width: 100%;
+
+    .ant-row.ant-form-item {
+      margin-bottom: 20px;
+    }
+    .ant-row.ant-form-item.ant-form-item-with-help.ant-form-item-has-error {
+      margin-bottom: 0px;
+    }
+    @include mobile {
+      .ant-form-item-explain.ant-form-item-explain-error {
+        font-size: map-get($map: $font-sizes, $key: '2XS');
+      }
+    }
+  }
+  
+  button[type="submit"].ant-btn.ant-btn-primary {
+    background-color: $primary;
+    &:hover {
+      background-color: $primary-light;
+    }
+    border: none;
+    font-family: $font-secondary;
+    font-size: map-get($map: $font-sizes, $key: "XS");
+    padding: 0 8px;
+    margin-right: .5rem;
+  }
+}

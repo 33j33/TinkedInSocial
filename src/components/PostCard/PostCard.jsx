@@ -1,11 +1,19 @@
-import { Image } from "antd";
-import "./PostCard.scss";
+import { useState } from "react";
 import {
   CommentOutlined,
   LikeOutlined,
   ShareAltOutlined,
 } from "@ant-design/icons";
+import { Image } from "antd";
+
+import CommentBox from "../CommentBox/CommentBox";
+import "./PostCard.scss";
+
+
 const PostCard = () => {
+
+  const [commentBoxVisible, setCommentBoxVisible] = useState(false);
+
   return (
     <>
       <div className="post-card">
@@ -44,7 +52,7 @@ const PostCard = () => {
               <LikeOutlined />
               <span className="btn-text">Like</span>
             </div>
-            <div className="btn">
+            <div className="btn" onClick={() => setCommentBoxVisible(!commentBoxVisible)}>
               <CommentOutlined />
               <span className="btn-text">Comment</span>
             </div>
@@ -54,6 +62,7 @@ const PostCard = () => {
             </div>
           </div>
         </div>
+        {commentBoxVisible && <CommentBox/>}
       </div>
     </>
   );
