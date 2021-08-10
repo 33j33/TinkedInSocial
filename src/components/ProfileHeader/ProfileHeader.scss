@@ -1,0 +1,112 @@
+@import "../../common/styles/colors", "../../common/styles/fonts",
+  "../../common/styles/mixins";
+
+$image-size: 100px;
+
+.header-wrapper {
+  margin-top: 1.5rem;
+  background: linear-gradient(
+    180deg,
+    darken($primary-dark, 10%),
+    $primary-dark $image-size * 0.6,
+    lighten($primary-dark, 20%) $image-size,
+    $card-bg-color $image-size 100%
+  );
+  border-radius: 10px;
+  width: clamp(300px, 95%, 650px);
+  box-shadow: 0 0 0 1px rgba(6, 3, 54, 0.212), 0 2px 3px rgba(6, 4, 88, 0.2);
+  min-height: 150px;
+  position: relative;
+
+  .profile-img {
+    position: absolute;
+    width: $image-size * 1.2;
+    height: $image-size * 1.2;
+    border-radius: 50%;
+    border: 2px solid $primary-light;
+    margin-right: 6px;
+    top: $image-size - $image-size / 2;
+    right: 3%;
+    @include mobile {
+      & {
+        width: $image-size;
+        height: $image-size;
+      }
+    }
+  }
+  .header-content {
+    margin-top: $image-size;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+
+    & > div:nth-of-type(1) {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .name {
+      font-size: map-get($map: $font-sizes, $key: "XL");
+      font-weight: 500;
+      line-height: 1.2;
+      width: max-content;
+    }
+    .anticon.anticon-edit {
+      font-size: map-get($map: $font-sizes, $key: "L");
+      color: lighten($text-color, 15%);
+      cursor: pointer;
+      padding: 3px;
+      border-radius: 4px;
+
+      &:hover {
+        color: $text-color;
+        background: lighten($text-color-lighter, 45%);
+      }
+    }
+    .designation {
+      font-size: map-get($map: $font-sizes, $key: "R");
+      font-weight: 400;
+      color: $text-color-lightest;
+      width: 80%;
+    }
+
+    & > div:nth-of-type(3) {
+      display: flex;
+      gap: 1rem;
+      margin: 0.4rem 0;
+    }
+    .category {
+      font-size: map-get($map: $font-sizes, $key: "S");
+      font-family: $font-primary;
+      font-weight: 300;
+      color: $text-color-lighter;
+      letter-spacing: 0.4px;
+    }
+    .category > span {
+      font-weight: 400;
+      color: $text-color-dark;
+    }
+    .bio {
+      line-height: 1.4;
+      font-size: map-get($map: $font-sizes, $key: "S");
+      font-family: $font-primary;
+      font-weight: 300;
+      letter-spacing: 0.2px;
+    }
+  }
+}
+
+.profile-edit-drawer-body-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .form-heading {
+    color: $primary-dark;
+    font-size: map-get($font-sizes, "XL");
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}

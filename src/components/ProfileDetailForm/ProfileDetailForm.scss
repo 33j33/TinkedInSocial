@@ -1,0 +1,47 @@
+@import "../../common/styles/colors", "../../common/styles/fonts",
+  "../../common/styles/mixins";
+
+$form-elem-max-width: 300px;
+$form-elem-width: 200px;
+form#profile-form {
+  padding: 0.4rem;
+  display: grid;
+  grid-template-columns: $form-elem-width $form-elem-width;
+  grid-template-rows: auto;
+  column-gap: 0.6rem;
+
+  & > .ant-form-item {
+    width: $form-elem-width;
+    grid-column: span 1;
+  }
+  .interests-input,
+  .bio-input,
+  .btn {
+    grid-column: 1/3;
+    width: 100%;
+  }
+  .ant-btn-primary {
+    background-color: $primary;
+    border: none;
+    width: 100%;
+    &:hover {
+      background-color: $primary-light;
+    }
+  }
+}
+
+@include mobile {
+  form#profile-form {
+    max-width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .ant-form-item {
+      width: $form-elem-max-width;
+      max-width: 95%;
+    }
+  }
+}
