@@ -1,6 +1,7 @@
 @import "../../common/styles/colors", "../../common/styles/fonts",
   "../../common/styles/mixins";
-nav {
+
+.nav {
   background: $primary-dark;
   display: flex;
   justify-content: space-between;
@@ -54,7 +55,7 @@ nav {
   }
 
   @include mobile {
-    nav {
+    .nav {
       position: relative;
     }
     .bars-icon {

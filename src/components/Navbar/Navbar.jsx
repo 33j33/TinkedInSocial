@@ -6,7 +6,7 @@ import {ImHome} from "react-icons/im";
 
 const Navbar = () => {
   return (
-    <nav>
+    <div className="nav">
       <div className="logo">
           <div>TinkedIn</div>
       </div>
@@ -18,7 +18,7 @@ const Navbar = () => {
             Sign Out
         </Button>
       </div>
-    </nav>
+    </div>
   );
 };
 export default Navbar;

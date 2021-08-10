@@ -1,11 +1,12 @@
 .dropdown-container {
-     width: clamp(300px, 95%, 650px);
+  width: clamp(300px, 95%, 650px);
 
-     .ant-divider-horizontal.ant-divider-with-text {
-          margin: -.6rem 0;
-          font-size: 14px;
-     }
-     .ant-divider-horizontal.ant-divider-with-text-right::after{
-          width: 0%;
-     }
+  .ant-divider-horizontal.ant-divider-with-text {
+    border-top-color: rgba(0, 0, 0, 0.3);
+    margin: -0.6rem 0;
+    font-size: 14px;
+  }
+  .ant-divider-horizontal.ant-divider-with-text-right::after {
+    width: 0%;
+  }
 }

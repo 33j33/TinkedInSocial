@@ -1,8 +1,7 @@
 @import "../../common/styles/colors", "../../common/styles/fonts",
   "../../common/styles/mixins";
 
-$form-elem-max-width: 300px;
-$form-elem-width: 200px;
+
 .signup-page {
   display: flex;
   min-height: 100vh;
@@ -21,37 +20,11 @@ $form-elem-width: 200px;
   }
   .form-heading {
     color: $primary-dark;
-    width: $form-elem-width;
+    width: 200px;
     font-size: map-get($font-sizes, "XL");
     font-weight: 500;
     margin-bottom: 1rem;
     text-align: center;
-  }
-  form#signup {
-    padding: 0.4rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    column-gap: 0.6rem;
-
-    & > .ant-form-item {
-      width: $form-elem-width;
-      grid-column: span 1;
-    }
-    .interests-input,
-    .bio-input,
-    .btn {
-      grid-column: 1/3;
-      width: 100%;
-    }
-  }
-  .ant-btn-primary {
-    background-color: $primary;
-    border: none;
-    width: 100%;
-    &:hover {
-      background-color: $primary-light;
-    }
   }
   @include mobile {
     .hero {
@@ -59,16 +32,6 @@ $form-elem-width: 200px;
     }
     .form-container {
       width: 100%;
-    }
-    form#signup {
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .ant-form-item {
-        width: $form-elem-max-width;
-      }
     }
   }
 }
