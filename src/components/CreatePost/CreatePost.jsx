@@ -4,31 +4,33 @@ import { useForm } from "antd/lib/form/Form";
 import { useState } from "react";
 import PostService from "../../services/post.service";
 
-import {user} from "../../selectors/user.selector";
+import { userSelector } from "../../selectors/user.selector";
 
 import "./CreatePost.scss";
+import { useSelector } from "react-redux";
 
 const CreatePost = () => {
   const Option = Select.Option;
   const [response, setResponse] = useState(undefined);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const user = useSelector(userSelector);
+  const tags = useSelector(state => state.common.tags);
 
   const [createPostForm] = useForm();
   const onFinish = (values) => {
     console.log("Success:", values);
     setLoading(true);
-    PostService.addPost({body: {empId: user.empId, ...values}})
-    .then((res) => {
-      setResponse(res.data);
-      message.success('Post Created');
-    }, (err) => {
-      setError(err)
-    })
-    .finally(() => {
-      setLoading(false);
-    })
+    PostService.addPost({ body: { empId: user.entity.empId, ...values } })
+      .then((res) => {
+        setResponse(res.data);
+        message.success('Post Created');
+      }, (err) => {
+        setError(err)
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -39,12 +41,12 @@ const CreatePost = () => {
       <div className="header">
         <img
           className="author-img"
-          src="https://i.pravatar.cc/70?img=68"
+          src="https://i.pravatar.cc/70?img=12"
           alt="profile-pic"
         />
         <div className="author">
-          <div className="author-name">Liam Neeson</div>
-          <div className="author-designation">Tech Lead - Frontend</div>
+          <div className="author-name">{user.entity.name}</div>
+          <div className="author-designation">{user.entity.designation}</div>
         </div>
       </div>
       <Form
@@ -77,13 +79,12 @@ const CreatePost = () => {
                 },
               ]}
             >
-              <Select placeholder="Select Post Tags" mode="multiple">
-                <Option value="AI">AI</Option>
-                <Option value="React">React</Option>
-                <Option value="Node">Node</Option>
-                <Option value="Android">Android</Option>
-                <Option value="Java">Java</Option>
-                <Option value="NestJs">NestJs</Option>
+              <Select placeholder="Select Post Tags" mode="multiple" listHeight={200}>
+                {
+                  tags?.map((tag, idx) => (
+                    <Option value={tag} key={idx}>{tag}</Option>
+                  ))
+                }
               </Select>
             </Form.Item>
           </Col>

@@ -3,9 +3,12 @@ import { EditOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useState } from "react";
 import ProfileDetailForm from "../ProfileDetailForm/ProfileDetailForm";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../selectors/user.selector";
 
 const ProfileHeader = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
+  const user = useSelector(userSelector);
   return (
     <div className="header-wrapper">
       <SideDrawer
@@ -19,30 +22,32 @@ const ProfileHeader = () => {
       />
       <div className="header-content">
         <div>
-          <div className="name">John Doe</div>
+          <div className="name">{user.entity?.name}</div>
           <EditOutlined
             onClick={() => {
               setDrawerVisible(true);
             }}
           />
         </div>
-        <div className="designation">Software Developer at Times Internet</div>
+        <div className="designation">{user.entity?.designation}</div>
         <div>
           <div className="category">
-            <span>Department: </span>Technology
+            <span>Department: </span>
+            {user.entity?.department}
           </div>
           <div className="category">
-            <span>Team: </span>Dineout
+            <span>Team: </span>
+            {user.entity?.team}
           </div>
           <div className="category">
-            <span>Employee ID: </span>1234534
+            <span>Employee ID: </span>
+            {user.entity?.empId}
           </div>
         </div>
         <div className="bio">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-          earum laborum tenetur vitae voluptatum animi molestias sapiente odio,
-          beatae pariatur expedita inventore quia qui cupiditate placeat
-          voluptate in architecto? Possimus!
+          {user.entity?.bio}
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus
+          ipsam autem voluptate nam enim tenetur placeat repudiandae minima
         </div>
       </div>
     </div>
@@ -62,10 +67,10 @@ const SideDrawer = ({ drawerVisible, setDrawerVisible }) => {
       visible={drawerVisible}
       width={window.innerWidth > 900 ? 500 : window.innerWidth - 100}
     >
-        <div className="profile-edit-drawer-body-wrapper">
+      <div className="profile-edit-drawer-body-wrapper">
         <div className="form-heading">Edit Profile</div>
-        <ProfileDetailForm />
-        </div>
+        <ProfileDetailForm type="profile-edit"/>
+      </div>
     </Drawer>
   );
 };

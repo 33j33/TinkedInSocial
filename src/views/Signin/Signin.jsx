@@ -5,7 +5,6 @@ import { userSelector } from '../../selectors/user.selector';
 import { fetchUser, userActions } from '../../redux/user/user.actions';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchCommonData } from '../../redux/global/commonData.actions';
 
 import "./Signin.scss";
 
@@ -21,10 +20,6 @@ const Signin = () => {
       history.push('/signup');
     }
   }, [user, history, empId, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchCommonData())
-  }, [dispatch]);
 
   const onFinish = (values) => {
     console.log('Success:', values);

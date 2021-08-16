@@ -7,7 +7,8 @@ import { useHistory } from "react-router-dom";
 import { saveUser } from "../../redux/user/user.actions";
 import "./ProfileDetailForm.scss";
 
-const ProfileDetailForm = () => {
+const ProfileDetailForm = ({ type }) => {
+  console.log("Profile Form", type)
   const Option = Select.Option;
 
   const dispatch = useDispatch();
@@ -29,18 +30,23 @@ const ProfileDetailForm = () => {
     // teams[0].departments[0].designations
   );
 
-
   // handlers
   const handleFormValuesChange = (value) => {
     if (value.team) {
       setDepartments(teams.find(o => o.team === value.team).departments);
+      form.setFieldsValue({
+        department: null,
+        designation: null,
+      })
     }
     if (value.department) {
       const team = form.getFieldValue("team")
-      console.log(value)
       setDesignations(teams
         .find(o => o.team === team).departments
         .find(o => o.name === value.department).designations)
+      form.setFieldsValue({
+        designation: null
+      })
     }
   };
 
@@ -55,20 +61,33 @@ const ProfileDetailForm = () => {
   };
 
   useEffect(() => {
-    if (userOnSave.entity?.name) {
+    if (type === 'signup' && userOnSave?.entity.name) {
       history.push('/home');
     }
-  }, [userOnSave, history])
+  }, [type, userOnSave, history])
+
+  useEffect(() => {
+    if (type === 'profile-edit') {
+      setDepartments(teams.find(o => o.team === user.entity.team).departments);
+      setDesignations(teams
+        .find(o => o.team === user.entity.team).departments
+        .find(o => o.name === user.entity.department).designations)
+    }
+  }, [user])
 
   return (
     <Form
       form={form}
       name="profile-form"
-      initialValues={{
-        // team: teams[0].team,
-        // department: teams[0].departments[0].name,
-        // designation: teams[0].departments[0].designations[0]
-      }}
+      initialValues={
+        type === "signup" ? {} : {
+          name: user.entity.name,
+          team: user.entity.team,
+          department: user.entity.department,
+          designation: user.entity.designation,
+          interests: user.entity.interests,
+          bio: user.entity.bio
+        }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       onValuesChange={handleFormValuesChange}
@@ -99,7 +118,7 @@ const ProfileDetailForm = () => {
         ]}
       >
         <Select placeholder="Team">
-          {teams.map((o, index) => (
+          {teams?.map((o, index) => (
             <Option value={o.team} key={index}>
               {o.team}
             </Option>
@@ -116,7 +135,7 @@ const ProfileDetailForm = () => {
         ]}
       >
         <Select placeholder="Department">
-          {departments.map((o, idx) => (
+          {departments?.map((o, idx) => (
             <Option value={o.name} key={idx}>
               {o.name}
             </Option>
@@ -134,7 +153,7 @@ const ProfileDetailForm = () => {
       >
         <Select placeholder="Designation" dropdownStyle={{ minWidth: '250px' }}>
           {
-            designations.map((designation, idx) => (
+            designations?.map((designation, idx) => (
               <Option value={designation} key={idx}>{designation}</Option>
             ))
           }
@@ -159,9 +178,9 @@ const ProfileDetailForm = () => {
           },
         ]}
       >
-        <Select placeholder="Interests" mode="multiple">
+        <Select placeholder="Interests" mode="multiple" listHeight={200}>
           {
-            tags.map((tag, idx) => (
+            tags?.map((tag, idx) => (
               <Option value={tag} key={idx}>{tag}</Option>
             ))
           }
