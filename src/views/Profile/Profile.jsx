@@ -1,8 +1,14 @@
 import { Divider } from "antd";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { Navbar, PostCard, ProfileHeader } from "../../components";
 import "./Profile.scss";
 
 const Profile = () => {
+  // const {isLoggedIn} = useSelector(state => state.user);
+  // if (!isLoggedIn) {
+  //   return <Redirect to="/signin"/>
+  // }
   return (
     <div className="profile">
       <Navbar />

@@ -26,6 +26,13 @@ $form-elem-width: 200px;
       font-weight: 500;
       margin-bottom: 1rem;
     }
+    form#signin {
+      width: fit-content;
+    }
+
+    .ant-form-item-explain {
+      max-width: fit-content;
+    }
   }
   .ant-btn-primary {
     width: $form-elem-width;

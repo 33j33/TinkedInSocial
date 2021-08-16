@@ -1,13 +1,34 @@
-import { Form, Input, Button, Select, Row, Col } from "antd";
+import { Form, Input, Button, Select, Row, Col, message } from "antd";
 import { CameraTwoTone } from "@ant-design/icons";
-import "./CreatePost.scss";
 import { useForm } from "antd/lib/form/Form";
+import { useState } from "react";
+import PostService from "../../services/post.service";
+
+import {user} from "../../selectors/user.selector";
+
+import "./CreatePost.scss";
 
 const CreatePost = () => {
   const Option = Select.Option;
+  const [response, setResponse] = useState(undefined);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+
   const [createPostForm] = useForm();
   const onFinish = (values) => {
     console.log("Success:", values);
+    setLoading(true);
+    PostService.addPost({body: {empId: user.empId, ...values}})
+    .then((res) => {
+      setResponse(res.data);
+      message.success('Post Created');
+    }, (err) => {
+      setError(err)
+    })
+    .finally(() => {
+      setLoading(false);
+    })
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -74,7 +95,7 @@ const CreatePost = () => {
           </Col>
         </Row>
         <Form.Item className="post-form-btn">
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Post
           </Button>
         </Form.Item>
