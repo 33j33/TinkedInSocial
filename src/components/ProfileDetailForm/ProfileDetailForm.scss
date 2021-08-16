@@ -28,6 +28,9 @@ form#profile-form {
       background-color: $primary-light;
     }
   }
+  .ant-form-item-explain.ant-form-item-explain-error {
+    max-width: fit-content;
+  }
 }
 
 @include mobile {

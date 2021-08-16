@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://til-social.herokuapp.com/tilsocialapp';
