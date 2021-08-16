@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home, Profile, Signin, Signup } from "../views";
+import PrivateRoute from "./PrivateRoutes";
 
 export default function Routes() {
   return (
@@ -11,12 +12,8 @@ export default function Routes() {
           <Route path="/signup">
             <Signup />
           </Route>
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
+          <PrivateRoute path="/home"  component={Home}/>
+          <PrivateRoute path="/profile" component={Profile}/>
         </Switch>
     </Router>
   );
