@@ -10,6 +10,7 @@ const TagsCarousel = () => {
   const { CheckableTag } = Tag;
   const tags = useSelector(state => state.common?.tags);
   const user = useSelector(userSelector);
+  const loader = useSelector(state => state.loaders["user_interests/update"]);
   const dispatch = useDispatch();
   const [selectedTags, setSelectedTags] = useState(user.entity.interests);
 
@@ -37,7 +38,7 @@ const TagsCarousel = () => {
       ))}
       <div className="save-btn">
         <Tooltip title="Update Interests" color="rgba(31,18,53,0.6)">
-          <Button shape="round" icon={<CheckCircleFilled />} type="primary" size="small" onClick={handleSave}>Apply</Button>
+          <Button loading={loader} shape="round" icon={<CheckCircleFilled />} type="primary" size="small" onClick={handleSave}>Apply</Button>
         </Tooltip>
       </div>
     </div>
