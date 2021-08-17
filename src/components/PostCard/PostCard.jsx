@@ -9,9 +9,7 @@ import { Image } from "antd";
 import CommentBox from "../CommentBox/CommentBox";
 import "./PostCard.scss";
 
-
-const PostCard = () => {
-
+const PostCard = ({ post }) => {
   const [commentBoxVisible, setCommentBoxVisible] = useState(false);
 
   return (
@@ -24,19 +22,34 @@ const PostCard = () => {
             alt="profile-pic"
           />
           <div className="author">
-            <div className="author-name">John Doe</div>
-            <div className="author-designation">Software Developer</div>
-            <div className="post-timestamp">12:30PM, 12/07/21</div>
+            <div className="author-name">{post.name}</div>
+            <div className="author-designation">
+              {post.designation || "Software Developer"}
+            </div>
+            <div className="post-timestamp">
+              {new Date(post.createdAt).toLocaleString([], {
+                day: "numeric",
+                month: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+              })}
+            </div>
           </div>
         </div>
         <div className="post-body">
           <div className="post-text">
+            {post.content}
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Necessitatibus cum, facilis et maxime corrupti maiores, sit mollitia
             enim repellat sapiente repudiandae magnam optio dolore nulla quia
             sequi, itaque non facere!
           </div>
-          <div className="post-tags">#React #Node #Redux</div>
+          <div className="post-tags">
+            {post.tags?.map((tag, idx) => (
+              <span key={idx}>#{tag} </span>
+            ))}
+          </div>
           <Image
             className="post-img"
             src="http://placehold.jp/600x400.png"
@@ -45,14 +58,18 @@ const PostCard = () => {
         </div>
         <div className="post-footer">
           <div className="post-metrics">
-            4 Likes <span>&nbsp;·&nbsp;</span> 23 Comments
+            {post.likesCount} Likes <span>&nbsp;·&nbsp;</span>{" "}
+            {post.commentsCount} Comments
           </div>
           <div className="post-interaction-btns">
             <div className="btn">
               <LikeOutlined />
               <span className="btn-text">Like</span>
             </div>
-            <div className="btn" onClick={() => setCommentBoxVisible(!commentBoxVisible)}>
+            <div
+              className="btn"
+              onClick={() => setCommentBoxVisible(!commentBoxVisible)}
+            >
               <CommentOutlined />
               <span className="btn-text">Comment</span>
             </div>
@@ -62,7 +79,7 @@ const PostCard = () => {
             </div>
           </div>
         </div>
-        {commentBoxVisible && <CommentBox/>}
+        {commentBoxVisible && <CommentBox />}
       </div>
     </>
   );

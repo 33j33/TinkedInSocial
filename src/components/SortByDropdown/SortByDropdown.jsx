@@ -2,14 +2,15 @@ import "./SortByDropdown.scss";
 import { Dropdown, Menu, message, Divider } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
-const SortByDropdown = () => {
-  const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`);
+const SortByDropdown = ({setSortBy, sortBy}) => {
+  const onClick = ({key}) => {
+    message.info(`Set to ${key.charAt(0).toUpperCase() + key.slice(1)}`, .5);
+    setSortBy(key)
   };
   const menu = (
-    <Menu onClick={onClick}>
-      <Menu.Item key="1">Trending</Menu.Item>
-      <Menu.Item key="2">Recent</Menu.Item>
+    <Menu selectable selectedKeys={[sortBy]} onClick={onClick}>
+      <Menu.Item key="trending">Trending</Menu.Item>
+      <Menu.Item key="recency">Recency</Menu.Item>
     </Menu>
   );
   return (
