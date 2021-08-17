@@ -30,6 +30,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false
             }
+        case userActions.UPDATE_INTERESTS_SUCCESS:
+            return {
+                ...state,
+                entity: {
+                    ...state.entity,
+                    tags: action.payload
+                }
+            }
         default:
             return state
     }

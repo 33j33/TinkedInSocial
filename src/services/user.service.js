@@ -16,4 +16,9 @@ export default class UserService {
     static getCommonData(){
         return axios.get(`${BASE_URL}/common/fetch`);
     }
+
+    static updateInterests(payload){
+        const {body} = payload;
+        return axios.get(`${BASE_URL}/profile/tag/save`, body)
+    }
 }

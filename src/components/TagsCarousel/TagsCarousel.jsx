@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { Tag } from "antd";
+import { Button, Tag, Tooltip } from "antd";
 import "./TagsCarousel.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { CheckCircleFilled } from "@ant-design/icons";
+import { userSelector } from "../../selectors/user.selector";
+import { updateInterests } from "../../redux/user/user.actions";
 
 const TagsCarousel = () => {
   const { CheckableTag } = Tag;
-  const tagsData = ["React", "AI", "Node", "ML", "JS", "Java", "SQL", "MongoDB", "Books", "Music", "Sports"];
-  const [selectedTags, setSelectedTags] = useState(["Books"]);
+  const tags = useSelector(state => state.common?.tags);
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+  const [selectedTags, setSelectedTags] = useState(user.entity.interests);
 
   const handleTagChange = (tag, checked) => {
     const nextSelectedTags = checked
@@ -14,18 +20,26 @@ const TagsCarousel = () => {
     console.log("You are interested in: ", nextSelectedTags);
     setSelectedTags(nextSelectedTags);
   };
+  const handleSave = () => {
+    dispatch(updateInterests({ body: selectedTags }));
+  }
 
   return (
     <div className="scrolling-wrapper">
-      {tagsData.map((tag) => (
+      {tags?.map((tag) => (
         <CheckableTag
           key={tag}
-          checked={selectedTags.indexOf(tag) > -1}
+          checked={selectedTags?.indexOf(tag) > -1}
           onChange={(checked) => handleTagChange(tag, checked)}
         >
           {tag}
         </CheckableTag>
       ))}
+      <div className="save-btn">
+        <Tooltip title="Update Interests" color="rgba(31,18,53,0.6)">
+          <Button shape="round" icon={<CheckCircleFilled />} type="primary" size="small" onClick={handleSave}>Apply</Button>
+        </Tooltip>
+      </div>
     </div>
   );
 };

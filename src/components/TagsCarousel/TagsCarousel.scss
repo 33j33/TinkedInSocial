@@ -4,7 +4,7 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  width: clamp(300px, 90%, 640px);
+  width: clamp(300px, 95vw, 640px);
   &::-webkit-scrollbar {
     display: none;
   }
@@ -12,6 +12,23 @@
   border-radius: 30px;
   padding: 0.4rem .5rem;
   background-color: $card-bg-color;
+  position: relative;
+
+  .save-btn {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+
+    button {
+      background-color: $primary;
+      border: none;
+      font-family: $font-secondary;
+      &:hover {
+        background-color: $primary-light;
+      }
+    }
+  }
 }
 
 .ant-tag.ant-tag-checkable {
