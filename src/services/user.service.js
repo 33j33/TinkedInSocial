@@ -19,6 +19,6 @@ export default class UserService {
 
     static updateInterests(payload){
         const {body} = payload;
-        return axios.get(`${BASE_URL}/profile/tag/save`, body)
+        return axios.post(`${BASE_URL}/profile/tag/save`, body)
     }
 }

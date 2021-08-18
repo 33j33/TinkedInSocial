@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   CommentOutlined,
+  LikeFilled,
   LikeOutlined,
   ShareAltOutlined,
 } from "@ant-design/icons";
@@ -8,10 +9,22 @@ import { Image } from "antd";
 
 import CommentBox from "../CommentBox/CommentBox";
 import "./PostCard.scss";
+import PostService from "../../services/post.service";
 
 const PostCard = ({ post }) => {
   const [commentBoxVisible, setCommentBoxVisible] = useState(false);
-
+  const [hasLiked, setHasLiked] = useState(post.hasLiked);
+  const [loading, setLoading] = useState(false);
+  const handleLike = () => {
+    setLoading(true);
+    PostService.likePost({ body: { postId: post.postId, empId: post.empId } })
+      .then(res => {
+        setHasLiked(res.data.hasLiked);
+      }, err => {
+        console.log(err);
+      })
+    setLoading(false);
+  }
   return (
     <>
       <div className="post-card">
@@ -62,8 +75,8 @@ const PostCard = ({ post }) => {
             {post.commentsCount} Comments
           </div>
           <div className="post-interaction-btns">
-            <div className="btn">
-              <LikeOutlined />
+            <div className="btn" onClick={handleLike}>
+              {hasLiked ? <LikeFilled style={{color: "#1f1235"}}/> : <LikeOutlined />}
               <span className="btn-text">Like</span>
             </div>
             <div

@@ -22,7 +22,7 @@ const TagsCarousel = () => {
     setSelectedTags(nextSelectedTags);
   };
   const handleSave = () => {
-    dispatch(updateInterests({ body: selectedTags }));
+    dispatch(updateInterests({ body: {tags: selectedTags, empId: user?.entity?.empId} }));
   }
 
   return (

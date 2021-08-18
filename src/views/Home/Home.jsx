@@ -12,7 +12,8 @@ const Home = () => {
   //   return <Redirect to="/signin"/>
   // }
   const user = useSelector(userSelector);
-  const { posts, meta, sortBy, setSortBy, fetchMoreData } = useFeedHook({ user, type: 'feed' });
+  const { posts, loading, meta, sortBy, setSortBy, fetchMoreData } = useFeedHook({ user, type: 'feed' });
+  console.log(posts);
   return (
     <>
       <Navbar />
@@ -20,10 +21,11 @@ const Home = () => {
         <div className="container">
           <CreatePost />
           <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
-          <InfiniteScroll
+          {loading && <h4>Loading...</h4>}
+          {!loading && posts.length !== 0 && <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
-            hasMore={!meta.empty}
+            hasMore={meta.hasMore}
             loader={<h4>Loading...</h4>}
             endMessage={<h3>No More Posts</h3>}
           >
@@ -36,6 +38,7 @@ const Home = () => {
               })
             }
           </InfiniteScroll>
+          }
         </div>
       </div>
     </>

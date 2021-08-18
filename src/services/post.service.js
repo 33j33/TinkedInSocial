@@ -13,4 +13,10 @@ export default class PostService {
         const {body} = payload;
         return axios.post(`${BASE_URL}/post/save`, body)
     }
+
+    static likePost(payload){
+        const {body} = payload;
+        console.log(body)
+        return axios.post(`${BASE_URL}/like/save`, body)
+    }
 }

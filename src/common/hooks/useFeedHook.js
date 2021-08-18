@@ -3,12 +3,14 @@ import PostService from "../../services/post.service";
 
 const useFeedHooks = ({ user, type }) => {
   const [posts, setPosts] = useState([]);
-  const [meta, setMeta] = useState({hasMore: true});
+  const [loading, setLoading] = useState(false);
+  const [meta, setMeta] = useState({hasMore: false});
   const [sortBy, setSortBy] = useState("trending");
   const [page, setPage] = useState(0);
 
   const fetchData = async () => {
     setPage(0);
+    setLoading(true)
     try {
       const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId: user?.entity?.empId } })
       setPosts([...res.data.content, { tagCarousel: true }]);
@@ -16,6 +18,7 @@ const useFeedHooks = ({ user, type }) => {
     } catch (err) {
       console.log(err);
     }
+    setLoading(false)
   }
   const fetchMoreData = async () => {
     const nextPage = page + 1;
@@ -33,7 +36,7 @@ const useFeedHooks = ({ user, type }) => {
     fetchData();
   }, [sortBy])
 
-  return { posts, meta, sortBy, setSortBy, fetchMoreData }
+  return { posts, loading, meta, sortBy, setSortBy, fetchMoreData }
 }
 
 export default useFeedHooks;

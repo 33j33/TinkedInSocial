@@ -31,13 +31,15 @@ const reducer = (state = initialState, action) => {
                 isLoggedIn: false
             }
         case userActions.UPDATE_INTERESTS_SUCCESS:
-            return {
+            const newState = {
                 ...state,
                 entity: {
                     ...state.entity,
-                    tags: action.payload
+                    interests: action.payload.tags
                 }
             }
+            localStorage.setItem("user", JSON.stringify(newState.entity));
+            return newState
         default:
             return state
     }
