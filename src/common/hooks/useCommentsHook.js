@@ -32,6 +32,7 @@ const useCommentHook = ({ postId}) => {
     }
     useEffect(() => {
         fetchComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return {comments, loading, fetchComments, postComment }
 }

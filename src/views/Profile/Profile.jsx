@@ -1,4 +1,3 @@
-import { Divider } from "antd";
 import { useSelector } from "react-redux";
 import useFeedHook from "../../common/hooks/useFeedHook";
 import {
@@ -24,7 +23,6 @@ const Profile = () => {
       <Navbar />
       <div className="profile-container">
         <ProfileHeader />
-        {/* <Divider orientation="right">User Activity</Divider> */}
         <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
         {loading && <h4>Loading...</h4>}
         {!loading && posts.length !== 0 && (

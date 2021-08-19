@@ -34,6 +34,7 @@ const useFeedHooks = ({ user, type }) => {
 
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy])
 
   return { posts, loading, meta, sortBy, setSortBy, fetchMoreData }
