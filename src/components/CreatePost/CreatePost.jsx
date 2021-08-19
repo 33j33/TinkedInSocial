@@ -28,7 +28,7 @@ const CreatePost = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
     setLoading(true);
-    PostService.addPost({ body: { empId: user.entity.empId, ...values, images: [values.imgUrl.file.response] } })
+    PostService.addPost({ body: { empId: user.entity.empId, ...values, images: [values.imgUrl?.file?.response] } })
       .then(
         (res) => {
           setResponse(res.data);
@@ -116,12 +116,6 @@ const CreatePost = () => {
               name="imgUrl"
               className="img-upload"
               valuePropName="file"
-              rules={[
-                {
-                  required: true,
-                  message: "* Required",
-                },
-              ]}
             >
               <Upload
                 multiple={false}
