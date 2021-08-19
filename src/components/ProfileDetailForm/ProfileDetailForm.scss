@@ -14,11 +14,17 @@ form#profile-form {
     width: $form-elem-width;
     grid-column: span 1;
   }
+  .img-upload,
   .interests-input,
   .bio-input,
   .btn {
     grid-column: 1/3;
     width: 100%;
+  }
+  .upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .ant-btn-primary {
     background-color: $primary;

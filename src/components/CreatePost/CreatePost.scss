@@ -44,7 +44,6 @@
   form#create-post {
     .ant-form-item {
       margin-bottom: 18px;
-      
     }
     .ant-form-item.ant-form-item-has-error {
       margin: 0;
@@ -52,9 +51,13 @@
     .post-tags {
       max-width: 500px;
     }
-    .upload-media-icon {
-      font-size: map-get($map: $font-sizes, $key: "XL");
-      margin-bottom: 1rem;
+    .upload button span {
+      font-family: $font-secondary;
+      color: $primary-dark;
+    }
+    .upload-icon {
+      font-size: map-get($map: $font-sizes, $key: "R");
+      color: $primary;
     }
     .post-form-btn {
       position: absolute;

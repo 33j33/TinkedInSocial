@@ -17,7 +17,8 @@ const ProfileHeader = () => {
       />
       <img
         className="profile-img"
-        src="https://i.pravatar.cc/100?img=12"
+        // src="https://i.pravatar.cc/100?img=12"
+        src={user.entity?.imgUrl}
         alt="profile-pic"
       />
       <div className="header-content">
