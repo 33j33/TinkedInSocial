@@ -60,6 +60,7 @@
       padding: .4rem .2rem;
       font-family: $font-secondary;
       font-size: map-get($map: $font-sizes, $key: 'XS');
+      cursor: pointer;
     }
     .post-interaction-btns {
       display: flex;

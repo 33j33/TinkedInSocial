@@ -1,19 +1,25 @@
+import useCommentHook from "../../common/hooks/useCommentsHook";
 import CommentSubmit from "../CommentSubmit/CommentSubmit";
 import "./CommentBox.scss";
 
-const CommentBox = () => {
+const CommentBox = ({ postId }) => {
+  const { comments, loading, postComment } = useCommentHook({ postId });
+
   return (
     <div className="comment-box">
-      <CommentSubmit />
+      <CommentSubmit postComment={postComment} postId={postId} />
       <div className="comments-wrapper">
-        <Comment />
-        <Comment />
+        {loading && <h4>Loading...</h4>}
+        {!loading &&
+          comments?.map((comment, idx) => (
+            <Comment key={idx} comment={comment} />
+          ))}
       </div>
     </div>
   );
 };
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <div className="comment">
       <img
@@ -23,10 +29,25 @@ const Comment = () => {
       />
       <div className="wrapper">
         <div className="author">
-          <div className="author-name">John Doe</div>
-          <div className="author-designation">Software Developer</div>
+          <div className="author-details">
+            <div className="author-name">{comment.name}</div>
+            <div className="author-designation">
+              {comment.designation || "Software Developer"}
+            </div>
+          </div>
+          <div className="comment-timestamp">
+            {new Date(comment.createdAt + 'Z').toLocaleString([], {
+              day: "numeric",
+              month: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })}
+          </div>
         </div>
-        <div className="comment-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non sit veniam suscipit consequuntur numquam assumenda similique quod libero. Perspiciatis quia ipsam aliquam! Omnis quia fugit optio illo repellat. Aliquid, fuga?</div>
+        <div className="comment-text">
+          {comment.comment}
+        </div>
       </div>
     </div>
   );

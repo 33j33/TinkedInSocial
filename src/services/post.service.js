@@ -19,4 +19,15 @@ export default class PostService {
         console.log(body)
         return axios.post(`${BASE_URL}/like/save`, body)
     }
+
+    static getComments(payload){
+        const {postId} = payload;
+        return axios.get(`${BASE_URL}/comment/fetch/${postId}`)
+    }
+
+    static addComment(payload) {
+        const {body} = payload;
+        return axios.post(`${BASE_URL}/comment/save`, body);
+    }
+
 }

@@ -15,13 +15,16 @@ const PostCard = ({ post }) => {
   const [commentBoxVisible, setCommentBoxVisible] = useState(false);
   const [hasLiked, setHasLiked] = useState(post.hasLiked);
   const [loading, setLoading] = useState(false);
+
   const handleLike = () => {
     setLoading(true);
+    setHasLiked(prev => !prev);
     PostService.likePost({ body: { postId: post.postId, empId: post.empId } })
       .then(res => {
         setHasLiked(res.data.hasLiked);
       }, err => {
         console.log(err);
+        setHasLiked(prev => !prev);
       })
     setLoading(false);
   }
@@ -40,7 +43,7 @@ const PostCard = ({ post }) => {
               {post.designation || "Software Developer"}
             </div>
             <div className="post-timestamp">
-              {new Date(post.createdAt).toLocaleString([], {
+              {new Date(post.createdAt + 'Z').toLocaleString([], {
                 day: "numeric",
                 month: "numeric",
                 year: "numeric",
@@ -70,7 +73,7 @@ const PostCard = ({ post }) => {
           />
         </div>
         <div className="post-footer">
-          <div className="post-metrics">
+          <div className="post-metrics" onClick={() => setCommentBoxVisible(!commentBoxVisible)}>
             {post.likesCount} Likes <span>&nbsp;·&nbsp;</span>{" "}
             {post.commentsCount} Comments
           </div>
@@ -92,7 +95,7 @@ const PostCard = ({ post }) => {
             </div>
           </div>
         </div>
-        {commentBoxVisible && <CommentBox />}
+        {commentBoxVisible && <CommentBox postId={post.postId}/>}
       </div>
     </>
   );

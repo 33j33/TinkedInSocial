@@ -1,9 +1,13 @@
 import { Form, Input, Button, Row, Col } from "antd";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../selectors/user.selector";
 import "./CommentSubmit.scss";
 
-const CommentSubmit = () => {
+const CommentSubmit = ({postComment, postId}) => {
+  const user = useSelector(userSelector);
   const onFinish = (values) => {
     console.log("Success:", values);
+    postComment({body: {postId, empId: user.entity.empId, comment: values.comment}})
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -26,7 +30,7 @@ const CommentSubmit = () => {
             rules={[
               {
                 required: true,
-                message: "Write a comment before submitting",
+                message: "* Required",
               },
             ]}
           >
