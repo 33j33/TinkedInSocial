@@ -38,14 +38,15 @@ export const saveUser = (inputs) => {
     }
 }
 
-export const updateInterests = (inputs) => {
+export const updateInterests = (inputs, cb) => {
     return (dispatch) => {
         dispatch({type: userActions.UPDATE_INTERESTS_STARTED})
         UserService.updateInterests(inputs)
             .then(res => {
                 dispatch({type: userActions.UPDATE_INTERESTS_SUCCESS, payload: res.data})
+                cb();
             }, (err) => {
-                dispatch({type: userActions.UPDATE_INTERESTS_SUCCESS, payload: err?.response?.data || err.response})
+                dispatch({type: userActions.UPDATE_INTERESTS_FAILURE, payload: err?.response?.data || err.response})
             })
     }
 }

@@ -56,7 +56,15 @@ const ProfileDetailForm = ({ type }) => {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    dispatch(saveUser({ body: { empId: user.entity.empId, ...values, imgUrl: values.imgUrl.file.response } }));
+    dispatch(
+      saveUser({
+        body: {
+          empId: user.entity.empId,
+          ...values,
+          imgUrl: values.imgUrl?.file?.response ? values.imgUrl.file.response : user.entity.imgUrl ,
+        },
+      })
+    );
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -65,9 +73,9 @@ const ProfileDetailForm = ({ type }) => {
 
   const onRemove = (file) => {
     setImage("");
-    console.log("onRemove", file)
-    return Promise.resolve()
-  }
+    console.log("onRemove", file);
+    return Promise.resolve();
+  };
 
   useEffect(() => {
     if (type === "signup" && userOnSave?.entity.name) {
@@ -97,13 +105,13 @@ const ProfileDetailForm = ({ type }) => {
         type === "signup"
           ? {}
           : {
-            name: user.entity.name,
-            team: user.entity.team,
-            department: user.entity.department,
-            designation: user.entity.designation,
-            interests: user.entity.interests,
-            bio: user.entity.bio,
-          }
+              name: user.entity.name,
+              team: user.entity.team,
+              department: user.entity.department,
+              designation: user.entity.designation,
+              interests: user.entity.interests,
+              bio: user.entity.bio,
+            }
       }
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
@@ -113,24 +121,26 @@ const ProfileDetailForm = ({ type }) => {
         name="imgUrl"
         className="img-upload"
         valuePropName="file"
-        rules={[
-          {
-            required: true,
-            message: "* Required",
-          },
-        ]}
+        rules={[{ required: type === "signup", message: "* Required" }]}
       >
-        <Upload multiple={false}
-         accept="image/*"
-          customRequest={MediaServie.uploadImage({form, setImage, dest: 'UserProfile'})}
+        <Upload
+          multiple={false}
+          accept="image/*"
+          customRequest={MediaServie.uploadImage({
+            form,
+            setImage,
+            dest: "UserProfile",
+          })}
           onRemove={onRemove}
           className="upload"
-          listType="picture-card">
-          
-          {!image && <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-          </div>}
+          listType="picture-card"
+        >
+          {!image && (
+            <div>
+              <PlusOutlined />
+              <div style={{ marginTop: 8 }}>Upload</div>
+            </div>
+          )}
         </Upload>
       </Form.Item>
       <Form.Item
@@ -204,12 +214,15 @@ const ProfileDetailForm = ({ type }) => {
         name="interests"
         className="interests-input"
         rules={[
-          {
-            required: true,
-            message: "* Required",
-          },
+          // {
+          //   required: true,
+          //   message: "* Required",
+          // },
           {
             validator(_, value) {
+              if (value.length ===0 ) {
+                return Promise.reject(new Error('* Required'))
+              }
               if (value.length < 3) {
                 return Promise.reject(new Error("Select atleast 3 interests"));
               } else {

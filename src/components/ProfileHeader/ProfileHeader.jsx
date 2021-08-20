@@ -3,12 +3,9 @@ import { EditOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useState } from "react";
 import ProfileDetailForm from "../ProfileDetailForm/ProfileDetailForm";
-import { useSelector } from "react-redux";
-import { userSelector } from "../../selectors/user.selector";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({user}) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const user = useSelector(userSelector);
   return (
     <div className="header-wrapper">
       <SideDrawer

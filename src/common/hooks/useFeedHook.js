@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PostService from "../../services/post.service";
 
-const useFeedHooks = ({ user, type }) => {
+const useFeedHooks = ({ empId, type }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState({hasMore: false});
@@ -12,7 +12,7 @@ const useFeedHooks = ({ user, type }) => {
     setPage(0);
     setLoading(true)
     try {
-      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId: user?.entity?.empId } })
+      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId } })
       setPosts([...res.data.content, { tagCarousel: true }]);
       setMeta({ hasMore: !res.data.last});
     } catch (err) {
@@ -24,7 +24,7 @@ const useFeedHooks = ({ user, type }) => {
     const nextPage = page + 1;
     setPage(prev => prev + 1);
     try {
-      const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId: user?.entity?.empId } })
+      const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId } })
       setPosts([...posts, ...res.data.content, { tagCarousel: true }]);
       setMeta({ hasMore: !res.data.last});
     } catch (err) {
@@ -37,7 +37,7 @@ const useFeedHooks = ({ user, type }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy])
 
-  return { posts, loading, meta, sortBy, setSortBy, fetchMoreData }
+  return { posts, loading, meta, sortBy, setSortBy, fetchMoreData, fetchData }
 }
 
 export default useFeedHooks;

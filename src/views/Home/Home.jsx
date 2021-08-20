@@ -12,7 +12,7 @@ const Home = () => {
   //   return <Redirect to="/signin"/>
   // }
   const user = useSelector(userSelector);
-  const { posts, loading, meta, sortBy, setSortBy, fetchMoreData } = useFeedHook({ user, type: 'feed' });
+  const { posts, loading, meta, sortBy, setSortBy, fetchData, fetchMoreData } = useFeedHook({ empId: user.entity.empId, type: 'feed' });
   console.log(posts);
   return (
     <>
@@ -32,7 +32,7 @@ const Home = () => {
             {
               posts?.map((o, idx) => {
                 if (o.tagCarousel) {
-                  return <TagsCarousel key={idx} />
+                  return <TagsCarousel key={idx} fetchPosts={fetchData}/>
                 }
                 return <PostCard key={idx} post={o} />
               })

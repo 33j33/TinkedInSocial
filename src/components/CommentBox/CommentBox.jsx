@@ -36,7 +36,7 @@ const Comment = ({ comment }) => {
             </div>
           </div>
           <div className="comment-timestamp">
-            {new Date(comment.createdAt + 'Z').toLocaleString([], {
+            {new Date(comment.createdAt + 'Z').toLocaleString(["en-IN"], {
               day: "numeric",
               month: "numeric",
               year: "numeric",

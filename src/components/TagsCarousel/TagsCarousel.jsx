@@ -6,14 +6,19 @@ import { CheckCircleFilled } from "@ant-design/icons";
 import { userSelector } from "../../selectors/user.selector";
 import { updateInterests } from "../../redux/user/user.actions";
 
-const TagsCarousel = () => {
+const TagsCarousel = ({ fetchPosts }) => {
   const { CheckableTag } = Tag;
-  const tags = useSelector(state => state.common?.tags);
-  const user = useSelector(userSelector);
-  const loader = useSelector(state => state.loaders["user_interests/update"]);
   const dispatch = useDispatch();
+
+  // selectors
+  const tags = useSelector((state) => state.common?.tags);
+  const user = useSelector(userSelector);
+  const loader = useSelector((state) => state.loaders["user_interests/update"]);
+
+  // state
   const [selectedTags, setSelectedTags] = useState(user.entity.interests);
 
+  // handlers
   const handleTagChange = (tag, checked) => {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
@@ -22,8 +27,13 @@ const TagsCarousel = () => {
     setSelectedTags(nextSelectedTags);
   };
   const handleSave = () => {
-    dispatch(updateInterests({ body: {tags: selectedTags, empId: user?.entity?.empId} }));
-  }
+    dispatch(
+      updateInterests(
+        { body: { tags: selectedTags, empId: user?.entity?.empId } },
+        fetchPosts
+      )
+    );
+  };
 
   return (
     <div className="scrolling-wrapper">
@@ -38,7 +48,16 @@ const TagsCarousel = () => {
       ))}
       <div className="save-btn">
         <Tooltip title="Update Interests" color="rgba(31,18,53,0.6)">
-          <Button loading={loader} shape="round" icon={<CheckCircleFilled />} type="primary" size="small" onClick={handleSave}>Apply</Button>
+          <Button
+            loading={loader}
+            shape="round"
+            icon={<CheckCircleFilled />}
+            type="primary"
+            size="small"
+            onClick={handleSave}
+          >
+            Apply
+          </Button>
         </Tooltip>
       </div>
     </div>

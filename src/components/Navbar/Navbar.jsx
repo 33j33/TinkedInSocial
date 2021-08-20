@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <div className="logo">
-          <div>TinkedIn</div>
+          <div>Til Social</div>
       </div>
       <FaBars className="bars-icon"/>
       <div className="nav-menu">
