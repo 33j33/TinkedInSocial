@@ -68,6 +68,7 @@
       color: $text-color-lighter;
       font-weight: 500;
     }
+    
     .btn {
         margin: 2px 0;
         padding: .05rem .4rem;
@@ -83,4 +84,8 @@
       margin: 0 4px;
     }
   }
+}
+.share-popover {
+  display: flex;
+  justify-content: space-around;
 }
