@@ -27,6 +27,7 @@ $image-size: 100px;
     margin-right: 6px;
     top: $image-size - $image-size / 2;
     right: 3%;
+    object-fit: cover;
     @include mobile {
       & {
         width: $image-size;

@@ -3,6 +3,8 @@ import { EditOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useState } from "react";
 import ProfileDetailForm from "../ProfileDetailForm/ProfileDetailForm";
+import isUrl from "../../common/helpers/isUrl";
+import fallbackImage from "../../assets/placeholder.png"
 
 const ProfileHeader = ({user}) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -14,8 +16,11 @@ const ProfileHeader = ({user}) => {
       />
       <img
         className="profile-img"
-        // src="https://i.pravatar.cc/100?img=12"
-        src={user.entity?.imgUrl}
+        src={
+          isUrl(user.entity?.imgUrl)
+            ? user.entity?.imgUrl
+            : fallbackImage
+        }
         alt="profile-pic"
       />
       <div className="header-content">
