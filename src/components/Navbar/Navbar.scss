@@ -7,11 +7,6 @@
   justify-content: space-between;
   padding: 0px 0.8rem;
 
-  .bars-icon {
-    display: none;
-    color: invert($color: $text-color-dark);
-    font-size: map-get($map: $font-sizes, $key: "2XL");
-  }
   .logo {
     display: flex;
     justify-content: center;
@@ -29,15 +24,31 @@
     margin: 8px 0px;
   }
 
+  @include mobile {
+    .logo > div {
+      font-size: map-get($map: $font-sizes, $key: "S");
+    }
+  }
   .nav-menu {
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 2rem;
 
+    @include mobile {
+      & {
+        gap: 10px;
+      }
+    }
+
     a {
       font-size: map-get($map: $font-sizes, $key: "M");
       border-bottom: 2px solid transparent;
+    }
+    @include mobile {
+      a {
+        font-size: map-get($map: $font-sizes, $key: "S");
+      }
     }
     a.active {
       border-bottom: 2px solid $primary-light;
@@ -51,23 +62,13 @@
       &:hover {
         background-color: $primary-light;
       }
-    }
-  }
 
-  @include mobile {
-    .nav {
-      position: relative;
-    }
-    .bars-icon {
-      display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translate(-50%, 60%);
-      cursor: pointer;
-    }
-    .nav-menu {
-      display: none;
+      @include mobile {
+        margin-left: 5px;
+        font-size: map-get($map: $font-sizes, $key: "XS");
+        height: 28px;
+        padding: 2px 8px;
+      }
     }
   }
 }
