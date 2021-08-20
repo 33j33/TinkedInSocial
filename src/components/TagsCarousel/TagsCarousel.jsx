@@ -37,15 +37,18 @@ const TagsCarousel = ({ fetchPosts }) => {
 
   return (
     <div className="scrolling-wrapper">
-      {tags?.map((tag) => (
-        <CheckableTag
-          key={tag}
-          checked={selectedTags?.indexOf(tag) > -1}
-          onChange={(checked) => handleTagChange(tag, checked)}
-        >
-          {tag}
-        </CheckableTag>
-      ))}
+      <div className="tags">
+        {tags?.map((tag) => (
+          <CheckableTag
+            key={tag}
+            checked={selectedTags?.indexOf(tag) > -1}
+            onChange={(checked) => handleTagChange(tag, checked)}
+          >
+            {tag}
+          </CheckableTag>
+        ))}
+      </div>
+
       <div className="save-btn">
         <Tooltip title="Update Interests" color="rgba(31,18,53,0.6)">
           <Button
