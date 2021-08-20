@@ -1,29 +1,31 @@
-import { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Spinner from "../components/Spinner/Spinner";
 import { fetchCommonData } from "../redux/global/commonData.actions";
-import { Home, Profile, Signin, Signup } from "../views";
 import PrivateRoute from "./PrivateRoutes";
+const Signin = lazy(() => import("../views/Signin/Signin"));
+const Signup = lazy(() => import("../views/Signup/Signup"));
+const Home = lazy(() => import("../views/Home/Home"));
+const Profile = lazy(() => import("../views/Profile/Profile"));
 
 export default function Routes() {
-
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCommonData())
+    dispatch(fetchCommonData());
   }, []);
 
   return (
-    <Router>
+    <Suspense fallback={Spinner}>
+      <Router>
         <Switch>
-          <Route path="/signin">
-            <Signin />
-          </Route>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <PrivateRoute path="/home"  component={Home}/>
-          <PrivateRoute path="/profile" component={Profile}/>
+          <Route path="/signin" component={Signin} />
+          <Route path="/signup" component={Signup} />
+          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/:empId" component={Profile} />
         </Switch>
-    </Router>
+      </Router>
+    </Suspense>
   );
 }
