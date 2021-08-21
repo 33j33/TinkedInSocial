@@ -12,7 +12,7 @@
   box-shadow: 0 0 1px 2px rgba(39, 3, 63, 0.35);
   border-radius: 30px;
   padding: 0.4rem 0.5rem;
-  padding-right: 6rem;
+  padding-right: 5.7rem;
   background-color: $card-bg-color;
   position: relative;
 
@@ -20,6 +20,9 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .save-btn {
     position: absolute;

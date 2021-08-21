@@ -44,7 +44,7 @@ const TagsCarousel = ({ fetchPosts }) => {
             checked={selectedTags?.indexOf(tag) > -1}
             onChange={(checked) => handleTagChange(tag, checked)}
           >
-            {tag}
+            #{tag}
           </CheckableTag>
         ))}
       </div>
