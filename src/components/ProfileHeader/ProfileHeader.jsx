@@ -1,12 +1,12 @@
-import "./ProfileHeader.scss";
 import { EditOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useState } from "react";
 import ProfileDetailForm from "../ProfileDetailForm/ProfileDetailForm";
 import isUrl from "../../common/helpers/isUrl";
-import fallbackImage from "../../assets/placeholder.png"
+import fallbackImage from "../../assets/placeholder.png";
+import "./ProfileHeader.scss";
 
-const ProfileHeader = ({user}) => {
+const ProfileHeader = ({ user, isSecondUser }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   return (
     <div className="header-wrapper">
@@ -16,21 +16,20 @@ const ProfileHeader = ({user}) => {
       />
       <img
         className="profile-img"
-        src={
-          isUrl(user.entity?.imgUrl)
-            ? user.entity?.imgUrl
-            : fallbackImage
-        }
+        src={isUrl(user.entity?.imgUrl) ? user.entity?.imgUrl : fallbackImage}
         alt="profile-pic"
+        style={{ background: "gray" }}
       />
       <div className="header-content">
         <div>
           <div className="name">{user.entity?.name}</div>
-          <EditOutlined
-            onClick={() => {
-              setDrawerVisible(true);
-            }}
-          />
+          {!isSecondUser && (
+            <EditOutlined
+              onClick={() => {
+                setDrawerVisible(true);
+              }}
+            />
+          )}
         </div>
         <div className="designation">{user.entity?.designation}</div>
         <div>
@@ -72,7 +71,7 @@ const SideDrawer = ({ drawerVisible, setDrawerVisible }) => {
     >
       <div className="profile-edit-drawer-body-wrapper">
         <div className="form-heading">Edit Profile</div>
-        <ProfileDetailForm type="profile-edit"/>
+        <ProfileDetailForm type="profile-edit" />
       </div>
     </Drawer>
   );

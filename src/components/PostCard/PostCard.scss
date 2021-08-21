@@ -51,6 +51,11 @@
     }
     .post-tags {
       color: $primary;
+
+      &>span {
+        cursor: pointer;
+        margin-right: 5px;
+      }
     }
   }
   .post-footer {

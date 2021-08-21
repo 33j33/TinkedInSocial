@@ -1,4 +1,7 @@
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import useFeedHook from "../../common/hooks/useFeedHook";
 import {
   Navbar,
@@ -7,11 +10,8 @@ import {
   SortByDropdown,
 } from "../../components";
 import { userSelector } from "../../selectors/user.selector";
-import InfiniteScroll from "react-infinite-scroll-component";
-import "./Profile.scss";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
+import "./Profile.scss";
 
 const Profile = () => {
   // const {isLoggedIn} = useSelector(state => state.user);
@@ -30,25 +30,32 @@ const Profile = () => {
     useFeedHook({ empId: empId || user.entity.empId, type: "self" });
 
   useEffect(() => {
-    setSecondUser({ ...secondUser, loading: true });
     if (empId) {
+      setSecondUser({ ...secondUser, loading: true });
       UserService.getUser({ id: empId }).then(
         (res) => {
           setSecondUser({ entity: res.data, loading: false, error: "" });
         },
         (err) => {
           console.log(err);
-          setSecondUser({entity: {}, loading: false, error: err.response?.data || err?.message})
+          setSecondUser({
+            entity: {},
+            loading: false,
+            error: err.response?.data || err?.message,
+          });
         }
       );
     }
   }, [empId]);
-  
+
   return (
     <div className="profile">
       <Navbar />
       <div className="profile-container">
-        <ProfileHeader user={empId ? secondUser :user} />
+        <ProfileHeader
+          user={empId ? secondUser : user}
+          isSecondUser={empId ? true : false}
+        />
         <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
         {loading && <h4>Loading...</h4>}
         {!loading && posts.length !== 0 && (
