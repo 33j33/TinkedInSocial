@@ -12,6 +12,7 @@ import {
 import { userSelector } from "../../selectors/user.selector";
 import UserService from "../../services/user.service";
 import "./Profile.scss";
+import Spinner from "../../components/Spinner/Spinner";
 
 const Profile = () => {
   // const {isLoggedIn} = useSelector(state => state.user);
@@ -57,13 +58,13 @@ const Profile = () => {
           isSecondUser={empId ? true : false}
         />
         <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
-        {loading && <h4>Loading...</h4>}
+        {loading && <Spinner/>}
         {!loading && posts.length !== 0 && (
           <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={meta.hasMore}
-            loader={<h4>Loading...</h4>}
+            loader={<Spinner/>}
             endMessage={<h3>No More Posts</h3>}
           >
             {posts?.map((o, idx) => {

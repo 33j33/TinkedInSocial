@@ -8,6 +8,7 @@ const Signin = lazy(() => import("../views/Signin/Signin"));
 const Signup = lazy(() => import("../views/Signup/Signup"));
 const Home = lazy(() => import("../views/Home/Home"));
 const Profile = lazy(() => import("../views/Profile/Profile"));
+const TagFeed = lazy(() => import("../views/TagFeed/TagFeed"))
 
 export default function Routes() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Routes() {
           <Route path="/signup" component={Signup} />
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/posts/:tag" component={TagFeed}/>
           <Route path="/:empId" component={Profile} />
         </Switch>
       </Router>

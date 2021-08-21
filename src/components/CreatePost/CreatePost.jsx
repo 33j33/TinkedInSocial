@@ -2,13 +2,13 @@ import { Form, Input, Button, Select, Row, Col, message, Upload } from "antd";
 import { CameraFilled} from "@ant-design/icons";
 import { useForm } from "antd/lib/form/Form";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import PostService from "../../services/post.service";
 
 import { userSelector } from "../../selectors/user.selector";
 
-import "./CreatePost.scss";
-import { useSelector } from "react-redux";
 import MediaServie from "../../services/media.service";
+import "./CreatePost.scss";
 
 const CreatePost = () => {
   const Option = Select.Option;

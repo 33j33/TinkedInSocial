@@ -2,9 +2,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from "react-redux";
 import { CreatePost, Navbar, PostCard, SortByDropdown, TagsCarousel } from "../../components";
 import { userSelector } from "../../selectors/user.selector";
-
-import "./Home.scss";
 import useFeedHook from '../../common/hooks/useFeedHook';
+import "./Home.scss";
+import Spinner from '../../components/Spinner/Spinner';
 
 const Home = () => {
   // const {isLoggedIn} = useSelector(state => state.user);
@@ -21,12 +21,12 @@ const Home = () => {
         <div className="container">
           <CreatePost />
           <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
-          {loading && <h4>Loading...</h4>}
+          {loading && <Spinner />}
           {!loading && posts.length !== 0 && <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={meta.hasMore}
-            loader={<h4>Loading...</h4>}
+            loader={<Spinner/>}
             endMessage={<h3>No More Posts</h3>}
           >
             {

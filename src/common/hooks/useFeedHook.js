@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PostService from "../../services/post.service";
 
-const useFeedHooks = ({ empId, type }) => {
+const useFeedHook = ({ empId, type, tag }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState({hasMore: false});
@@ -12,7 +12,7 @@ const useFeedHooks = ({ empId, type }) => {
     setPage(0);
     setLoading(true)
     try {
-      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId } })
+      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId, tag } })
       setPosts([...res.data.content, { tagCarousel: true }]);
       setMeta({ hasMore: !res.data.last});
     } catch (err) {
@@ -24,7 +24,7 @@ const useFeedHooks = ({ empId, type }) => {
     const nextPage = page + 1;
     setPage(prev => prev + 1);
     try {
-      const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId } })
+      const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId, tag } })
       setPosts([...posts, ...res.data.content, { tagCarousel: true }]);
       setMeta({ hasMore: !res.data.last});
     } catch (err) {
@@ -40,4 +40,4 @@ const useFeedHooks = ({ empId, type }) => {
   return { posts, loading, meta, sortBy, setSortBy, fetchMoreData, fetchData }
 }
 
-export default useFeedHooks;
+export default useFeedHook;
