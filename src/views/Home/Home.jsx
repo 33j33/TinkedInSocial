@@ -1,6 +1,6 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSelector } from "react-redux";
-import { CreatePost, Navbar, PostCard, SortByDropdown, TagsCarousel } from "../../components";
+import { ColleagueCarousel, CreatePost, Navbar, PostCard, SortByDropdown, TagsCarousel } from "../../components";
 import { userSelector } from "../../selectors/user.selector";
 import useFeedHook from '../../common/hooks/useFeedHook';
 import "./Home.scss";
@@ -20,6 +20,7 @@ const Home = () => {
       <div className="home">
         <div className="container">
           <CreatePost />
+          <ColleagueCarousel/>
           <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
           {loading && <Spinner />}
           {!loading && posts.length !== 0 && <InfiniteScroll

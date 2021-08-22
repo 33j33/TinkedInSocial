@@ -1,4 +1,5 @@
 import { Divider, Tag } from "antd";
+import { useEffect } from "react";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector } from "react-redux";
@@ -11,14 +12,16 @@ import "./TagFeed.scss";
 
 const TagFeed = () => {
   const { tag } = useParams();
-  const [tagState] = useState(tag);
 
   const user = useSelector(userSelector);
-  const { posts, loading, meta, fetchMoreData } = useFeedHook({
+  const { posts, loading, meta, fetchMoreData, setTagState } = useFeedHook({
     empId: user.entity.empId,
     type: "feed",
-    tag: tagState,
+    tag
   });
+  useEffect(() => {
+    setTagState(tag)
+  }, [tag])
 
   return (
     <>
