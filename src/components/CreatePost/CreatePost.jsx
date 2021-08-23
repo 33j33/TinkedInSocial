@@ -84,7 +84,7 @@ const CreatePost = () => {
             },
           ]}
         >
-          <Input.TextArea placeholder="Share your thoughts..." />
+          <Input.TextArea autoSize={{minRows: 4, maxRows: 10}} placeholder="Share your thoughts..." />
         </Form.Item>
         <Row justify="space-between" align="middle">
           <Col xs={{ span: 16 }} md={{ span: 20 }}>
