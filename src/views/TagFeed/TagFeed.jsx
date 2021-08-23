@@ -40,7 +40,7 @@ const TagFeed = () => {
             endMessage={<h3>No More Posts</h3>}
           >
             {posts?.map((o, idx) => {
-              if (o.tagCarousel) {
+              if (o.tagCarousel || o.colleagueCarousel) {
                 return null;
               }
               return <PostCard key={idx} post={o} />;

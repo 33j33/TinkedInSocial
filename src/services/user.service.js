@@ -21,4 +21,9 @@ export default class UserService {
         const {body} = payload;
         return axios.post(`${BASE_URL}/profile/tag/save`, body)
     }
+
+    static getSuggestedUsers(payload){
+        const {id} = payload
+        return axios.get(`${BASE_URL}/recommend/fetch/${id}`)
+    }
 }

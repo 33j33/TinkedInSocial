@@ -1,0 +1,91 @@
+@import "../../common/styles/colors", "../../common/styles/fonts";
+
+$card-height: 150px;
+
+.carousel-wrapper {
+  overflow-x: hidden;
+  width: clamp(300px, 95vw, 644px);
+  background-color: $card-bg-color;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 1px 1px rgba(39, 3, 63, 0.35);
+  border-radius: 10px;
+
+  .heading {
+    font-size: map-get($map: $font-sizes, $key: "M");
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .cards {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    padding: 1px;
+  }
+
+  .profile-card {
+    width: 120px;
+    height: $card-height;
+    box-shadow: 0 0 0 1px rgba(6, 3, 54, 0.212), 0 2px 3px rgba(6, 4, 88, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    white-space: normal;
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+
+    .background {
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(9, 9, 121, 1) 100%
+      );
+      height: $card-height * 0.35;
+      border-bottom: 2px solid $primary;
+    }
+    .profile-pic {
+      position: absolute;
+      top: $card-height * 0.35 - 40px;
+      left: calc(50% - 30px);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid $primary;
+      object-fit: cover;
+      
+      &:hover {
+          border: 3px solid $primary-light;
+      }
+    }
+    .details {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 3px;
+        padding: 0 2px;
+        line-height: 1.2;
+
+    }
+    .name {
+        font-weight: 600;
+        font-size: map-get($map: $font-sizes, $key: "R");
+    }
+    .designation {
+        font-size: map-get($map: $font-sizes, $key: "XS");
+        font-family: $font-primary;
+        font-weight: 300;
+        color: $text-color-lighter;
+    }
+    .team {
+        font-size: map-get($map: $font-sizes, $key: "2XS");
+        font-weight: 500;
+        color: $text-color-lighter;
+    }
+  }
+}
