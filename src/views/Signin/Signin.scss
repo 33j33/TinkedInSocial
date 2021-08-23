@@ -10,6 +10,22 @@ $form-elem-width: 200px;
     width: 60%;
     min-height: 100%;
     background-color: $primary-dark;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      color: invert($color: $text-color-dark);
+      border: 5px solid invert($color: $text-color-dark);
+      font-family: $font-secondary;
+      font-size: 4rem;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      margin: 8px 0px;
+    }
   }
   .form-container {
     width: 40%;

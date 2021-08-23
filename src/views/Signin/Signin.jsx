@@ -35,7 +35,11 @@ const Signin = () => {
   }
   return (
     <div className="signin-page">
-      <div className="hero"></div>
+      <div className="hero">
+        <div className="logo">
+          Til Social
+        </div>
+      </div>
       <div className="form-container">
         <div className="form-heading">
           Sign In
