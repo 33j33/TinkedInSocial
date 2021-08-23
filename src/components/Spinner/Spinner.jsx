@@ -2,7 +2,7 @@ import { Spin } from "antd";
 
 const Spinner = () => {
   return (
-    <div style={{marginTop: "2rem"}}>
+    <div style={{ margin: "1rem", display: "flex", justifyContent: "center" }}>
       <Spin size="large" />
     </div>
   );
