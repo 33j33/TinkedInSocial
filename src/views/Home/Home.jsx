@@ -51,21 +51,41 @@ const Home = () => {
               endMessage={<h3>No More Posts</h3>}
             >
               {posts?.map((o, idx) => {
-                if (idx !== 0 && idx % 10 === 0) {
-                  return (
-                    <>
-                      <ColleagueCarousel key={`${idx}-carousel`} />
-                      <PostCard key={`${idx}-post`} post={o} />
-                    </>
-                  );
-                } else if (idx !== 0 && idx % 5 === 0) {
-                  return (
-                    <>
-                      <TagsCarousel key={`${idx}-tag`} fetchPosts={fetchData} />
-                      <PostCard key={`${idx}-post`} post={o} />
-                    </>
-                  );
-                } else return <PostCard key={`${idx}-post`} post={o} />;
+                if (o.carousel) {
+                  if (idx !== 0 && idx % 10 === 0) {
+                    return <ColleagueCarousel key={`${o.postId}-carousel`} />;
+                  } else {
+                    return (
+                      <TagsCarousel
+                        key={`${o.postId}-tag`}
+                        fetchPosts={fetchData}
+                      />
+                    );
+                  }
+                } else {
+                  return <PostCard key={idx} post={o} />;
+                }
+                // if (idx !== 0 && idx % 10 === 0) {
+                //   console.count("carousel")
+                //   return (
+                //     <>
+                //       <ColleagueCarousel key={`${o.postId}-carousel`} />
+                //       <PostCard key={o.postId} post={o} />
+                //     </>
+                //   );
+                // } else if (idx !== 0 && idx % 5 === 0) {
+                //   console.count("tag")
+                //   return (
+                //     <>
+                //       <TagsCarousel key={`${o.postId}-tag`} fetchPosts={fetchData} />
+                //       <PostCard key={o.postId} post={o} />
+                //     </>
+                //   );
+                // } else { 
+                //   console.count("post")
+                //   return <PostCard key={o.postId} post={o} />;
+                // }
+                // return <PostCard key={idx} post={o} />;
               })}
             </InfiniteScroll>
           )}

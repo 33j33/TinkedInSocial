@@ -41,6 +41,9 @@ const TagFeed = () => {
             endMessage={<h3>No More Posts</h3>}
           >
             {posts?.map((o, idx) => {
+              if (o.carousel) {
+                return null
+              }
               return <PostCard key={idx} post={o} />;
             })}
           </InfiniteScroll>

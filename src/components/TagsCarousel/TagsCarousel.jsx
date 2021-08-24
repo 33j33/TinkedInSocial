@@ -38,9 +38,9 @@ const TagsCarousel = ({ fetchPosts }) => {
   return (
     <div className="scrolling-wrapper">
       <div className="tags">
-        {tags?.map((tag) => (
+        {tags?.map((tag, idx) => (
           <CheckableTag
-            key={tag}
+            key={`${idx}-${tag}`}
             checked={selectedTags?.indexOf(tag) > -1}
             onChange={(checked) => handleTagChange(tag, checked)}
           >

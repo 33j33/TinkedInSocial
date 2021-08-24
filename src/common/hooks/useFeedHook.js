@@ -14,7 +14,7 @@ const useFeedHook = ({ empId, type, tag }) => {
     setLoading(true)
     try {
       const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId, tag: tagState } })
-      setPosts([...res.data.content])
+      setPosts([...res.data.content, {carousel: true}])
       setMeta({ hasMore: !res.data.last });
     } catch (err) {
       console.log(err);
@@ -26,7 +26,7 @@ const useFeedHook = ({ empId, type, tag }) => {
     setPage(prev => prev + 1);
     try {
       const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId, tag: tagState } })
-      setPosts([...posts, ...res.data.content]);
+      setPosts([...posts, ...res.data.content, {carousel: true}]);
       setMeta({ hasMore: !res.data.last });
     } catch (err) {
       console.log(err);
