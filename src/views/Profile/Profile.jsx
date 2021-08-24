@@ -50,31 +50,33 @@ const Profile = () => {
   }, [empId]);
 
   return (
-    <div className="profile">
+    <>
       <Navbar />
-      <div className="profile-container">
-        <ProfileHeader
-          user={empId ? secondUser : user}
-          isSecondUser={empId ? true : false}
-        />
-        <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
-        {loading && <Spinner />}
-        {!loading && posts.length === 0 && <h3>No Posts</h3>}
-        {!loading && posts.length !== 0 && (
-          <InfiniteScroll
-            dataLength={posts.length}
-            next={fetchMoreData}
-            hasMore={meta.hasMore}
-            loader={<Spinner />}
-            endMessage={<h3>No More Posts</h3>}
-          >
-            {posts?.map((o, idx) => {
-              return <PostCard key={idx} post={o} />;
-            })}
-          </InfiniteScroll>
-        )}
+      <div className="profile">
+        <div className="profile-container">
+          <ProfileHeader
+            user={empId ? secondUser : user}
+            isSecondUser={empId ? true : false}
+          />
+          <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
+          {loading && <Spinner />}
+          {!loading && posts.length === 0 && <h3>No Posts</h3>}
+          {!loading && posts.length !== 0 && (
+            <InfiniteScroll
+              dataLength={posts.length}
+              next={fetchMoreData}
+              hasMore={meta.hasMore}
+              loader={<Spinner />}
+              endMessage={<h3>No More Posts</h3>}
+            >
+              {posts?.map((o, idx) => {
+                return <PostCard key={idx} post={o} />;
+              })}
+            </InfiniteScroll>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Profile;

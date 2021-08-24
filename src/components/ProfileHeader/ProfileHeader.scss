@@ -66,8 +66,8 @@ $image-size: 100px;
     }
     .designation {
       font-size: map-get($map: $font-sizes, $key: "R");
-      font-weight: 400;
-      color: $text-color-lightest;
+      font-weight: 500;
+      color: $text-color-lighter;
       width: 80%;
     }
 

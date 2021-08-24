@@ -1,11 +1,16 @@
-@import "../../common/styles/colors";
+@import "../../common/styles/colors", "../../common/styles/mixins";
 
 .home {
   width: 100%;
   min-height: 100vh;
   background-color: $bg-color;
-  padding-bottom: 2rem;
-
+  padding: 3.4rem 0;
+  @include mobile {
+    & {
+      padding: 2.5rem 0;
+    }
+  }
+  
   .container {
     display: flex;
     flex-direction: column;
@@ -23,3 +28,4 @@
     }
   }
 }
+

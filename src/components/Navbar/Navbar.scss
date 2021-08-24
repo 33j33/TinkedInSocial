@@ -6,7 +6,9 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 0.8rem;
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 
   .logo {
     display: flex;

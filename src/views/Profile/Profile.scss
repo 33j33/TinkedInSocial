@@ -5,7 +5,12 @@
   width: 100%;
   min-height: 100vh;
   background-color: $bg-color;
-  padding-bottom: 2rem;
+  padding: 3.4rem 0;
+  @include mobile {
+    & {
+      padding: 2.5rem 0;
+    }
+  }
 
   //   .ant-divider.ant-divider-horizontal {
   //     width: clamp(300px, 95%, 650px);
