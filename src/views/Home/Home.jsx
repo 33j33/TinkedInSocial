@@ -24,7 +24,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { posts, loading, meta, sortBy, setSortBy, fetchData, fetchMoreData } =
     useFeedHook({ empId: user.entity.empId, type: "feed" });
-
+  console.log(posts);
   useEffect(() => {
     dispatch(fetchSuggestedUsers({ id: user.entity?.empId }));
   }, []);
@@ -36,6 +36,12 @@ const Home = () => {
           <CreatePost />
           <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
           {loading && <Spinner />}
+          {!loading && posts.length === 0 && (
+            <>
+              <TagsCarousel fetchPosts={fetchData} />
+              <h3>No Posts</h3>
+            </>
+          )}
           {!loading && posts.length !== 0 && (
             <InfiniteScroll
               dataLength={posts.length}
@@ -45,13 +51,21 @@ const Home = () => {
               endMessage={<h3>No More Posts</h3>}
             >
               {posts?.map((o, idx) => {
-                if (o.tagCarousel) {
-                  return <TagsCarousel key={idx} fetchPosts={fetchData} />;
-                }
-                if (o.colleagueCarousel) {
-                  return <ColleagueCarousel />;
-                }
-                return <PostCard key={idx} post={o} />;
+                if (idx !== 0 && idx % 10 === 0) {
+                  return (
+                    <>
+                      <ColleagueCarousel key={`${idx}-carousel`} />
+                      <PostCard key={o.postId} post={o} />
+                    </>
+                  );
+                } else if (idx !== 0 && idx % 5 === 0) {
+                  return (
+                    <>
+                      <TagsCarousel key={`${idx}-tag`} fetchPosts={fetchData} />
+                      <PostCard key={o.postId} post={o} />
+                    </>
+                  );
+                } else return <PostCard key={o.postId} post={o} />;
               })}
             </InfiniteScroll>
           )}

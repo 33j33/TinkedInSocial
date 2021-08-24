@@ -4,7 +4,7 @@ import PostService from "../../services/post.service";
 const useFeedHook = ({ empId, type, tag }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [meta, setMeta] = useState({hasMore: false});
+  const [meta, setMeta] = useState({ hasMore: false });
   const [sortBy, setSortBy] = useState("trending");
   const [page, setPage] = useState(0);
   const [tagState, setTagState] = useState(tag);
@@ -13,14 +13,9 @@ const useFeedHook = ({ empId, type, tag }) => {
     setPage(0);
     setLoading(true)
     try {
-      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId, tag:tagState } })
-      if (posts.length % 12 === 0) {
-        setPosts([...res.data.content, { colleagueCarousel: true }]);
-      }
-      else {
-        setPosts([...res.data.content, { tagCarousel: true }]);
-      }
-      setMeta({ hasMore: !res.data.last});
+      const res = await PostService.fetchPosts({ params: { sortBy, type, page: 0, empId, tag: tagState } })
+      setPosts([...res.data.content])
+      setMeta({ hasMore: !res.data.last });
     } catch (err) {
       console.log(err);
     }
@@ -31,13 +26,8 @@ const useFeedHook = ({ empId, type, tag }) => {
     setPage(prev => prev + 1);
     try {
       const res = await PostService.fetchPosts({ params: { sortBy, type, page: nextPage, empId, tag: tagState } })
-      if (posts.length % 12 === 0) {
-        setPosts([...posts, ...res.data.content, { colleagueCarousel: true }]);
-      }
-      else {
-        setPosts([...posts, ...res.data.content, { tagCarousel: true }]);
-      }
-      setMeta({ hasMore: !res.data.last});
+      setPosts([...posts, ...res.data.content]);
+      setMeta({ hasMore: !res.data.last });
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +35,7 @@ const useFeedHook = ({ empId, type, tag }) => {
 
   useEffect(() => {
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy, tagState])
 
   return { posts, loading, meta, sortBy, setSortBy, fetchMoreData, fetchData, setTagState }

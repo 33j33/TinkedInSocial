@@ -58,19 +58,17 @@ const Profile = () => {
           isSecondUser={empId ? true : false}
         />
         <SortByDropdown sortBy={sortBy} setSortBy={setSortBy} />
-        {loading && <Spinner/>}
+        {loading && <Spinner />}
+        {!loading && posts.length === 0 && <h3>No Posts</h3>}
         {!loading && posts.length !== 0 && (
           <InfiniteScroll
             dataLength={posts.length}
             next={fetchMoreData}
             hasMore={meta.hasMore}
-            loader={<Spinner/>}
+            loader={<Spinner />}
             endMessage={<h3>No More Posts</h3>}
           >
             {posts?.map((o, idx) => {
-              if (o.tagCarousel || o.colleagueCarousel) {
-                return null;
-              }
               return <PostCard key={idx} post={o} />;
             })}
           </InfiniteScroll>

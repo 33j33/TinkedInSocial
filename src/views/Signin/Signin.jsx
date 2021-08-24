@@ -16,8 +16,8 @@ const Signin = () => {
 
   useEffect(() => {
     if (user?.error?.status === "404" && user?.error?.error === 'UserNotFoundException') {
-      dispatch({ type: userActions.FETCH_USER_SUCCESS, payload: { empId } })
-      history.push('/signup');
+      // dispatch({ type: userActions.FETCH_USER_SUCCESS, payload: { empId } })
+      history.push({pathname: '/signup', state: {empId}});
     }
   }, [user, history, empId, dispatch]);
 
@@ -57,12 +57,19 @@ const Signin = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your Employee ID!',
+                message: '* Required',
               },
               {
                 validator(_, value) {
                   if (isNaN(value)) {
                     return Promise.reject(new Error('Employee ID should contain only numeric characters'))
+                  }
+                  const length = value.toString().length;
+                  if (length !== 8){
+                    return Promise.reject(new Error('Enter an 8-digit Employee ID'))
+                  }
+                  if (value.slice(0,4) !== "1450") {
+                    return Promise.reject(new Error('Enter an employee ID starting with 1450'))
                   }
                   else {
                     return Promise.resolve();
