@@ -46,8 +46,8 @@ const Comment = ({ comment }) => {
         onClick={handleCommentHeaderClick}
       />
       <div className="wrapper">
-        <div className="author" onClick={handleCommentHeaderClick}>
-          <div className="author-details">
+        <div className="author" >
+          <div className="author-details" onClick={handleCommentHeaderClick}>
             <div className="author-name">{comment.name}</div>
             <div className="author-designation">
               {comment.designation}
