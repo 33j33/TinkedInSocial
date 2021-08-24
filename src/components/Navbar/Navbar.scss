@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 0.8rem;
+  position: sticky;
 
   .logo {
     display: flex;
@@ -18,7 +19,7 @@
     font-family: $font-secondary;
     font-size: map-get($map: $font-sizes, $key: "XL");
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 2px;
     padding: 3px 5px;
     margin: 8px 0px;
@@ -43,7 +44,9 @@
 
     a {
       font-size: map-get($map: $font-sizes, $key: "M");
-      border-bottom: 2px solid transparent;
+      font-weight: 600;
+      border-bottom: 3px solid transparent;
+      margin-top: 3px;
     }
     @include mobile {
       a {
@@ -51,7 +54,7 @@
       }
     }
     a.active {
-      border-bottom: 2px solid $primary-light;
+      border-bottom: 3px solid $primary-light;
     }
     button:last-child {
       margin-left: 2rem;
