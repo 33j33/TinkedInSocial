@@ -12,10 +12,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     .logo {
+      width: 100px;
+    }
+    .brand {
       color: invert($color: $text-color-dark);
-      border: 5px solid invert($color: $text-color-dark);
+      // border: 5px solid invert($color: $text-color-dark);
       font-family: $font-secondary;
       font-size: 4rem;
       text-align: center;

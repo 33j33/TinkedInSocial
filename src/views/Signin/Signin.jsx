@@ -2,10 +2,10 @@ import { Form, Input, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { userSelector } from '../../selectors/user.selector';
-import { fetchUser, userActions } from '../../redux/user/user.actions';
+import { fetchUser } from '../../redux/user/user.actions';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import logo from "../../assets/logo.jpg"
 import "./Signin.scss";
 
 const Signin = () => {
@@ -36,8 +36,9 @@ const Signin = () => {
   return (
     <div className="signin-page">
       <div className="hero">
-        <div className="logo">
-          Til Social
+        <img src={logo} alt="logo" className="logo" />
+        <div className="brand">
+          TIL SOCIAL
         </div>
       </div>
       <div className="form-container">

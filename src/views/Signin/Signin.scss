@@ -6,6 +6,7 @@ $form-elem-width: 200px;
 .signin-page {
   display: flex;
   min-height: 100vh;
+
   .hero {
     width: 60%;
     min-height: 100%;
@@ -16,8 +17,11 @@ $form-elem-width: 200px;
     align-items: center;
 
     .logo {
+      width: 100px;
+    }
+    .brand {
       color: invert($color: $text-color-dark);
-      border: 5px solid invert($color: $text-color-dark);
+      // border: 5px solid invert($color: $text-color-dark);
       font-family: $font-secondary;
       font-size: 4rem;
       text-align: center;

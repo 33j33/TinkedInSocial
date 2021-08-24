@@ -12,20 +12,34 @@
 
   .logo {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
   }
-  .logo > div {
+  .logo-img {
+    width: 60px;
+  }
+  .brand {
     color: invert($color: $text-color-dark);
-    border: 2px solid invert($color: $text-color-dark);
+    // border: 5px solid invert($color: $text-color-dark);
     font-family: $font-secondary;
     font-size: map-get($map: $font-sizes, $key: "XL");
     text-align: center;
     font-weight: 600;
-    letter-spacing: 2px;
-    padding: 3px 5px;
+    letter-spacing: 1px;
+    padding: 5px 10px;
     margin: 8px 0px;
   }
+
+  // .logo {
+  //   color: invert($color: $text-color-dark);
+  //   border: 2px solid invert($color: $text-color-dark);
+  //   font-family: $font-secondary;
+  //   font-size: map-get($map: $font-sizes, $key: "XL");
+  //   text-align: center;
+  //   font-weight: 600;
+  //   letter-spacing: 2px;
+  //   padding: 3px 5px;
+  //   margin: 8px 0px;
+  // }
 
   @include mobile {
     .logo > div {
