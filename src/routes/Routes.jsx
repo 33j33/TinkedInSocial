@@ -25,7 +25,7 @@ export default function Routes() {
   }, []);
 
   if (commonDataLoader || commonDataLoader === undefined) {
-    console.count("if")
+
     return (
       <div
         style={{
@@ -40,7 +40,7 @@ export default function Routes() {
       </div>
     );
   } else {
-    console.count("else")
+    
     return (
       // <Suspense fallback={<Spinner/>}>
       <Router>

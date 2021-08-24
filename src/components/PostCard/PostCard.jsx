@@ -27,11 +27,18 @@ const PostCard = ({ post }) => {
   // state
   const [commentBoxVisible, setCommentBoxVisible] = useState(false);
   const [hasLiked, setHasLiked] = useState(post.hasLiked);
+  const [likesCount, setLikesCount] = useState(post.likesCount);
   const [loading, setLoading] = useState(false);
 
   // handlers
   const handleLike = () => {
     setLoading(true);
+    if (hasLiked) {
+      setLikesCount(prev => prev - 1)
+    }
+    if (!hasLiked){
+      setLikesCount(prev => prev + 1)
+    }
     setHasLiked((prev) => !prev);
     PostService.likePost({
       body: { postId: post.postId, empId: user.entity.empId },
@@ -48,7 +55,6 @@ const PostCard = ({ post }) => {
   };
 
   const handlePostHeaderClick = () => {
-    console.log("clicked");
     if (post.empId === user.entity.empId) {
       history.push("/profile");
     } else if (post.empId !== user.entity.empId) {
@@ -110,10 +116,6 @@ const PostCard = ({ post }) => {
         <div className="post-body">
           <div className="post-text">
             {post.content}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus cum, facilis et maxime corrupti maiores, sit mollitia
-            enim repellat sapiente repudiandae magnam optio dolore nulla quia
-            sequi, itaque non facere!
           </div>
           <div className="post-tags">
             {post.tags?.map((tag, idx) => (
@@ -121,7 +123,7 @@ const PostCard = ({ post }) => {
             ))}
           </div>
           {isUrl(post.images?.[0]) && (
-            <Image className="post-img" src={post.images[0]} alt="post-media" />
+            <Image className="post-img" src={post.images[0]} alt="post-media" style={{background: "black"}} />
           )}
         </div>
         <div className="post-footer">
@@ -129,7 +131,7 @@ const PostCard = ({ post }) => {
             className="post-metrics"
             onClick={() => setCommentBoxVisible(!commentBoxVisible)}
           >
-            {post.likesCount} Likes <span>&nbsp;·&nbsp;</span>{" "}
+            {likesCount} Likes <span>&nbsp;·&nbsp;</span>{" "}
             {post.commentsCount} Comments
           </div>
           <div className="post-interaction-btns">

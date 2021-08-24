@@ -2,8 +2,6 @@ import { EditOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useState } from "react";
 import ProfileDetailForm from "../ProfileDetailForm/ProfileDetailForm";
-import isUrl from "../../common/helpers/isUrl";
-import fallbackImage from "../../assets/placeholder.png";
 import "./ProfileHeader.scss";
 
 const ProfileHeader = ({ user, isSecondUser }) => {
@@ -16,9 +14,9 @@ const ProfileHeader = ({ user, isSecondUser }) => {
       />
       <img
         className="profile-img"
-        src={isUrl(user.entity?.imgUrl) ? user.entity?.imgUrl : fallbackImage}
+        src={user.entity?.imgUrl}
         alt="profile-pic"
-        style={{ background: "gray" }}
+        style={{ background: "black" }}
       />
       <div className="header-content">
         <div>
@@ -48,8 +46,6 @@ const ProfileHeader = ({ user, isSecondUser }) => {
         </div>
         <div className="bio">
           {user.entity?.bio}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus
-          ipsam autem voluptate nam enim tenetur placeat repudiandae minima
         </div>
       </div>
     </div>
@@ -67,7 +63,7 @@ const SideDrawer = ({ drawerVisible, setDrawerVisible }) => {
         setDrawerVisible(false);
       }}
       visible={drawerVisible}
-      width={window.innerWidth > 900 ? 500 : window.innerWidth - 100}
+      width={window.innerWidth > 900 ? 500 : window.innerWidth - 50}
     >
       <div className="profile-edit-drawer-body-wrapper">
         <div className="form-heading">Edit Profile</div>

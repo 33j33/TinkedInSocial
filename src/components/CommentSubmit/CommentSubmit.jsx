@@ -1,13 +1,19 @@
 import { Form, Input, Button, Row, Col } from "antd";
+import { useForm } from "antd/lib/form/Form";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../selectors/user.selector";
 import "./CommentSubmit.scss";
 
 const CommentSubmit = ({postComment, postId}) => {
+
   const user = useSelector(userSelector);
+
+  const [commentSubmitForm] = useForm();
+
   const onFinish = (values) => {
     console.log("Success:", values);
     postComment({body: {postId, empId: user.entity.empId, comment: values.comment}})
+    commentSubmitForm.resetFields(["comment"])
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -17,6 +23,7 @@ const CommentSubmit = ({postComment, postId}) => {
     <div className="comment-submit-wrapper">
       <Form
         name="comment-submit-form"
+        form={commentSubmitForm}
         initialValues={{
           remember: true,
         }}

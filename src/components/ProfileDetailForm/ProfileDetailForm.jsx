@@ -12,7 +12,7 @@ import "./ProfileDetailForm.scss";
 import { PlusOutlined } from "@ant-design/icons";
 import MediaServie from "../../services/media.service";
 
-const ProfileDetailForm = ({ type }) => {
+const ProfileDetailForm = ({ type, empId }) => {
   console.log("Profile Form", type);
   const Option = Select.Option;
 
@@ -59,7 +59,7 @@ const ProfileDetailForm = ({ type }) => {
     dispatch(
       saveUser({
         body: {
-          empId: user.entity.empId,
+          empId: user.entity?.empId || empId,
           ...values,
           imgUrl: values.imgUrl?.file?.response ? values.imgUrl.file.response : user.entity.imgUrl ,
         },
@@ -214,10 +214,6 @@ const ProfileDetailForm = ({ type }) => {
         name="interests"
         className="interests-input"
         rules={[
-          // {
-          //   required: true,
-          //   message: "* Required",
-          // },
           {
             validator(_, value) {
               if (value.length ===0 ) {
@@ -245,12 +241,24 @@ const ProfileDetailForm = ({ type }) => {
         className="bio-input"
         rules={[
           {
-            required: true,
-            message: "* Required",
+            validator(_, value) {
+              if (value.length === 0 ) {
+                return Promise.reject(new Error('* Required'))
+              }
+              if (value.length < 100) {
+                return Promise.reject(new Error("Enter minimum 50 characters"));
+              } 
+              if (value.length > 1000 ){
+                return Promise.reject(new Error("Max character limit reached"))
+              }
+              else {
+                return Promise.resolve();
+              }
+            },
           },
         ]}
       >
-        <Input.TextArea placeholder="Give a short description about yourself" />
+        <Input.TextArea autoSize={{minRows: 4, maxRows: 10}} placeholder="Give a short description about yourself" />
       </Form.Item>
       <Form.Item className="btn">
         <Button
