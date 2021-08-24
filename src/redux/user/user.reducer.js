@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
         case userActions.SIGNOUT:
             localStorage.removeItem("user");
             return {
-                ...state,
+                entity: {},
                 isLoggedIn: false
             }
         case userActions.UPDATE_INTERESTS_SUCCESS:

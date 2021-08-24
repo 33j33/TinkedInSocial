@@ -55,17 +55,17 @@ const Home = () => {
                   return (
                     <>
                       <ColleagueCarousel key={`${idx}-carousel`} />
-                      <PostCard key={o.postId} post={o} />
+                      <PostCard key={`${idx}-post`} post={o} />
                     </>
                   );
                 } else if (idx !== 0 && idx % 5 === 0) {
                   return (
                     <>
                       <TagsCarousel key={`${idx}-tag`} fetchPosts={fetchData} />
-                      <PostCard key={o.postId} post={o} />
+                      <PostCard key={`${idx}-post`} post={o} />
                     </>
                   );
-                } else return <PostCard key={o.postId} post={o} />;
+                } else return <PostCard key={`${idx}-post`} post={o} />;
               })}
             </InfiniteScroll>
           )}

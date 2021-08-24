@@ -123,7 +123,7 @@ const PostCard = ({ post }) => {
             ))}
           </div>
           {isUrl(post.images?.[0]) && (
-            <Image className="post-img" src={post.images[0]} alt="post-media" style={{background: "black"}} />
+            <Image className="post-img" src={post.images[0]} alt="post-media" width={"100%"} style={{background: "black"}} />
           )}
         </div>
         <div className="post-footer">

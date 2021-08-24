@@ -81,7 +81,7 @@ const ProfileDetailForm = ({ type, empId }) => {
     if (type === "signup" && userOnSave?.entity.name) {
       history.push("/home");
     }
-  }, [type, userOnSave, history]);
+  }, [type, userOnSave]);
 
   useEffect(() => {
     if (type === "profile-edit") {
