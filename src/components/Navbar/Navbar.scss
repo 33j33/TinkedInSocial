@@ -20,12 +20,12 @@
   .brand {
     color: invert($color: $text-color-dark);
     // border: 5px solid invert($color: $text-color-dark);
-    font-family: $font-secondary;
+    font-family: $font-primary;
     font-size: map-get($map: $font-sizes, $key: "XL");
     text-align: center;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 5px 10px;
+    padding: 5px 3px;
     margin: 8px 0px;
   }
 
