@@ -58,7 +58,7 @@ const PostCard = ({ post }) => {
     if (post.empId === user.entity.empId) {
       history.push("/profile");
     } else if (post.empId !== user.entity.empId) {
-      history.push(`/${post.empId}`);
+      history.push(`/user/${post.empId}`);
     }
   };
 

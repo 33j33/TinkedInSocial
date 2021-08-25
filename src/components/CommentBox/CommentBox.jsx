@@ -31,7 +31,7 @@ const Comment = ({ comment }) => {
     if (comment.empId === user.entity.empId) {
       history.push("/profile");
     } else if (comment.empId !== user.entity.empId) {
-      history.push(`/${comment.empId}`);
+      history.push(`/user/${comment.empId}`);
     }
   };
   

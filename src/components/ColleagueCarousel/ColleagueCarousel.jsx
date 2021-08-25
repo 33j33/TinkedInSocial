@@ -14,7 +14,7 @@ const ColleagueCarousel = () => {
     if (user.empId === _user.entity.empId) {
       history.push("/profile");
     } else if (user.empId !== _user.entity.empId) {
-      history.push(`/${user.empId}`);
+      history.push(`/user/${user.empId}`);
     }
   };
   return (

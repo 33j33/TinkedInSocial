@@ -51,17 +51,12 @@ const Home = () => {
               endMessage={<h3>No More Posts</h3>}
             >
               {posts?.map((o, idx) => {
-                if (o.carousel) {
-                  if (idx !== 0 && idx % 10 === 0) {
-                    return <ColleagueCarousel key={`${o.postId}-carousel`} />;
-                  } else {
-                    return (
-                      <TagsCarousel
-                        key={`${o.postId}-tag`}
-                        fetchPosts={fetchData}
-                      />
-                    );
-                  }
+                if (o.carousel && idx !== 0 && idx % 11 === 0) {
+                  return <ColleagueCarousel key={`${idx}-carousel`} />;
+                } else if (o.carousel) {
+                  return (
+                    <TagsCarousel key={`${idx}-tag`} fetchPosts={fetchData} />
+                  );
                 } else {
                   return <PostCard key={idx} post={o} />;
                 }
@@ -81,7 +76,7 @@ const Home = () => {
                 //       <PostCard key={o.postId} post={o} />
                 //     </>
                 //   );
-                // } else { 
+                // } else {
                 //   console.count("post")
                 //   return <PostCard key={o.postId} post={o} />;
                 // }

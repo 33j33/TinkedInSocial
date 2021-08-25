@@ -1,7 +1,7 @@
 import { Spin } from "antd";
 import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { fetchCommonData } from "../redux/global/commonData.actions";
 import PrivateRoute from "./PrivateRoutes";
 // const Signin = lazy(() => import("../views/Signin/Signin"));
@@ -45,12 +45,13 @@ export default function Routes() {
       // <Suspense fallback={<Spinner/>}>
       <Router>
         <Switch>
-          <Route path="/signin" component={Signin} />
-          <Route path="/signup" component={Signup} />
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
           <PrivateRoute path="/home" component={Home} />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/posts/:tag" component={TagFeed} />
-          <Route path="/:empId" component={Profile} />
+          <Route exact path="/posts/:tag" component={TagFeed} />
+          <Route exact path="/user/:empId" component={Profile} />
+          <Route path="*" render={() => (<Redirect to="/home" />)} /> 
         </Switch>
       </Router>
       // </Suspense>
