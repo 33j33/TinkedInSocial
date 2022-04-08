@@ -1,4 +1,4 @@
-# TILSocial
+# TinkedInSocial
 
 # Tech Stack
 
